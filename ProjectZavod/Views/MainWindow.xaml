@@ -1,0 +1,139 @@
+﻿<Window x:Class="ProjectZavod.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectZavod"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock FontSize="15">Размер: Ширина, Высота</TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <TextBox 
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Text="{Binding Width}"
+                >
+                </TextBox>
+                <TextBox 
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Margin ="105,0,0,0"
+                    Text="{Binding Height}"
+                >
+                </TextBox>
+            </Grid>
+
+            <TextBlock FontSize="15" Text="Тип двери:">
+            </TextBlock>
+
+            <!--<ComboBox 
+                Text="Дверь"
+                Width="85" 
+                Height="22"
+                HorizontalAlignment="Left"
+                Margin="0,5,0,0"
+                ItemsSource="{Binding idkWhatToDo}"
+                DisplayMemberPath="Name"
+                SelectedIndex="{Binding Index}"
+                />-->
+
+            <TextBlock FontSize="15" Text="Замок 1:   Замок 1:">
+            </TextBlock>
+
+            <Grid>
+                <!--<ComboBox 
+                Text="Замок 1"
+                Width="85" 
+                Height="22"
+                HorizontalAlignment="Left"
+                Margin="0,5,0,0"
+                ItemsSource="{Binding ModelsFiles}"
+                DisplayMemberPath="Name"
+                SelectedIndex="{Binding Index}"
+                />-->
+                
+                <!--<ComboBox 
+                Text="Замок 2"
+                Width="85" 
+                Height="22"
+                HorizontalAlignment="Left"
+                Margin="90,5,0,0"
+                ItemsSource="{Binding Data}"
+                DisplayMemberPath="Name"
+                SelectedIndex="{Binding Index}"
+                />-->
+            </Grid>
+            <Grid>
+                <Button             
+                x:Name="ModelsFolder" 
+                Command="{Binding BrowseModelsFolderButton}" 
+                HorizontalAlignment="Stretch"
+                Margin="41,10,641,-8"
+                VerticalAlignment="Top" 
+                Width="110"
+                Background="White"
+                BorderThickness="0"  
+                Height="85">
+                    <StackPanel HorizontalAlignment="Stretch" Width="104">
+                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
+                        <TextBlock HorizontalAlignment="Center" Text="Папка Шаблонов" FontSize="12" Margin="0,0,10,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button              
+                x:Name="BrowseResults" 
+                Command="{Binding BrowseResultsFolderButton}" 
+                HorizontalAlignment="Stretch"
+                Margin="476,10,206,-8"
+                VerticalAlignment="Top" 
+                Width="110"
+                Background="White"
+                BorderThickness="0"  
+                Height="85">
+                    <StackPanel HorizontalAlignment="Stretch" Width="104">
+                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
+                        <TextBlock HorizontalAlignment="Center" Text="Папка отгрузки" FontSize="12" Margin="0,0,10,0"/>
+                    </StackPanel>
+                </Button>
+
+            <Button             
+                x:Name="BrowseOrders" 
+                Command="{Binding BrowseOrdersFolderButton}" 
+                HorizontalAlignment="Stretch"
+                Margin="259,10,423,-8"
+                VerticalAlignment="Top" 
+                Width="110"
+                Background="White"
+                BorderThickness="0"  
+                Height="85">
+                    <StackPanel HorizontalAlignment="Stretch" Width="104">
+                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
+                        <TextBlock HorizontalAlignment="Center" Text="Папка Заказов" FontSize="12" Margin="0,0,10,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+            
+            <Button             
+                x:Name="StartButton" 
+                Command="{Binding StartProgrammButton}" 
+                HorizontalAlignment="Right"
+                Margin="0,1,1,1"
+                
+                VerticalAlignment="Top" 
+                Width="90"
+                Background="White"
+                Content="Start"
+                Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>
