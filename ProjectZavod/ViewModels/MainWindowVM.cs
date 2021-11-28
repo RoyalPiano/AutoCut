@@ -1,14 +1,10 @@
 ﻿using netDxf;
-using netDxf.Entities;
 using netDxf.Header;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -19,12 +15,58 @@ namespace ProjectZavod.ViewModels
         public string[] OrdersFiles;
         public string[] ResultsFiles;
         public string[] ModelsFiles;
+        public string[] DoorModelsPath { get; set; }
+        public string[] KeyHoleModelsPath { get; set; }
+        public string[] DoorModels { get; set; }
+        public string[] KeyHoleModels { get; set; }
+
+
+        private string doorType;
+        public string DoorType
+        {
+            get { return doorType; }
+            set
+            {
+                if (value != doorType)
+                {
+                    doorType = value;
+                    OnPropertyChanged("DoorType");
+                }
+            }
+        }
+
+        private string keyType1;
+        public string KeyType1
+        {
+            get { return keyType1; }
+            set
+            {
+                if (value != keyType1)
+                {
+                    keyType1 = value;
+                    OnPropertyChanged("KeyType1");
+                }
+            }
+        }
+
+        private string keyType2;
+        public string KeyType2
+        {
+            get { return keyType2; }
+            set
+            {
+                if (value != keyType2)
+                {
+                    keyType2 = value;
+                    OnPropertyChanged("KeyType2");
+                }
+            }
+        }
 
         public class CommandHandler : ICommand
         {
             private Action _action;
             private Func<bool> _canExecute;
-
             /// <summary>
             /// Creates instance of the command handler
             /// </summary>
@@ -63,11 +105,11 @@ namespace ProjectZavod.ViewModels
 
         public MainWindowVM()
         {
-
+            DoorModelsPath = Directory.GetDirectories(@"..\..\templates\Doors");
+            KeyHoleModelsPath = Directory.GetDirectories(@"..\..\templates\KeyHoles");
+            DoorModels = DoorModelsPath.Select(x => x.Split('\\').Last()).ToArray();
+            KeyHoleModels = KeyHoleModelsPath.Select(x => x.Split('\\').Last()).ToArray();
         }
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
 
         private ICommand _startProgrammButton;
         public ICommand StartProgrammButton
