@@ -97,66 +97,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="templates\1,5 кв г 2050.dxf" />
-    <None Include="templates\1,5 кв г 2050.frw" />
-    <None Include="templates\1,5 кв г 2050.frw.bak" />
-    <None Include="templates\1,5 кв з 2050.dxf" />
-    <None Include="templates\1,5 кв з 2050.frw" />
-    <None Include="templates\1,5 кв з 2050.frw.bak" />
-    <None Include="templates\1,5 кв отв 860 colored test.dxf" />
-    <None Include="templates\1,5 кв отв 860 colored test.frw" />
-    <None Include="templates\1,5 кв отв 860 colored.dxf" />
-    <None Include="templates\1,5 кв отв 860 fixed.dxf" />
-    <None Include="templates\1,5 кв отв 860 fixed.frw" />
-    <None Include="templates\1,5 кв отв 860 fixed.frw.bak" />
-    <None Include="templates\1,5 кв отв 860.dxf" />
-    <None Include="templates\1,5 кв пл 2050 зам 3211.dxf" />
-    <None Include="templates\1,5 кв пл 2050 зам 3211.frw" />
-    <None Include="templates\1,5 кв пл 2050 зам 3211.frw.bak" />
-    <None Include="templates\1,5 кв полотно 2050х860  3011.dxf" />
-    <None Include="templates\1,5 кв полотно 2050х860  3011.frw" />
-    <None Include="templates\1,5 кв полотно 2050х860  3011.frw.bak" />
-    <None Include="templates\1.5 кв отв 2050.dxf" />
-    <None Include="templates\1.5 кв отв 2050.frw" />
-    <None Include="templates\1.5 кв отв 2050.frw.bak" />
-    <None Include="templates\1.5 кв пл 860.dxf" />
-    <None Include="templates\1.5 кв плз 2050 зам 3011.dxf" />
-    <None Include="templates\1.5 кв плз 2050 зам 3011.frw" />
-    <None Include="templates\1.5 кв плз 2050 зам 3011.frw.bak" />
-    <None Include="templates\1.5 кв порог 860.dxf" />
-    <None Include="templates\1.5 кв порог 860.frw" />
-    <None Include="templates\1.5 кв порог 860.frw.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв г 2050.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв г 2050.dxf" />
-    <None Include="templates\ColoredAndFixed\1,5 кв з 2050.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв з 2050.dxf" />
-    <None Include="templates\ColoredAndFixed\1,5 кв отв 860 fixed.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв отв 860 fixed.dxf" />
-    <None Include="templates\ColoredAndFixed\1,5 кв пл 2050 зам.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв пл 2050 зам.dxf" />
-    <None Include="templates\ColoredAndFixed\1,5 кв полотно 2050х860  зам.bak" />
-    <None Include="templates\ColoredAndFixed\1,5 кв полотно 2050х860  зам.dxf" />
-    <None Include="templates\ColoredAndFixed\1.5 кв пл 860.bak" />
-    <None Include="templates\ColoredAndFixed\1.5 кв пл 860.dxf" />
-    <None Include="templates\ColoredAndFixed\1.5 кв плз 2050 зам.bak" />
-    <None Include="templates\ColoredAndFixed\1.5 кв плз 2050 зам.dxf" />
-    <None Include="templates\ColoredAndFixed\1.5 кв порог 860.bak" />
-    <None Include="templates\ColoredAndFixed\1.5 кв порог 860.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв пл зам 3011.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв пл зам 3201.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв пл зам 3211.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв плз зам 3011 .dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв плз зам 3201.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв полотно зам 3011.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1,5 кв полотно зам 3201.dxf" />
-    <None Include="templates\ColoredAndFixed\Locks\1.5 кв плз зам 3011.dxf" />
-    <None Include="templates\ColoredAndFixed\ReedMe.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="templates\icons\folderIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="templates\Doors\" />
+    <Folder Include="templates\KeyHoles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
