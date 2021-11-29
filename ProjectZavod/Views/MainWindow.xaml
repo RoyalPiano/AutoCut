@@ -36,42 +36,39 @@
             <TextBlock FontSize="15" Text="Тип двери:">
             </TextBlock>
 
-            <!--<ComboBox 
+            <ComboBox 
                 Text="Дверь"
                 Width="85" 
                 Height="22"
                 HorizontalAlignment="Left"
                 Margin="0,5,0,0"
-                ItemsSource="{Binding idkWhatToDo}"
-                DisplayMemberPath="Name"
-                SelectedIndex="{Binding Index}"
-                />-->
+                ItemsSource="{Binding DoorModels}" 
+                SelectedValue="{Binding DoorType}"
+                />
 
             <TextBlock FontSize="15" Text="Замок 1:   Замок 1:">
             </TextBlock>
 
             <Grid>
-                <!--<ComboBox 
+                <ComboBox 
                 Text="Замок 1"
                 Width="85" 
                 Height="22"
                 HorizontalAlignment="Left"
                 Margin="0,5,0,0"
-                ItemsSource="{Binding ModelsFiles}"
-                DisplayMemberPath="Name"
-                SelectedIndex="{Binding Index}"
-                />-->
+                ItemsSource="{Binding KeyHoleModels}"
+                SelectedValue="{Binding KeyType1}"
+                />
                 
-                <!--<ComboBox 
+                <ComboBox 
                 Text="Замок 2"
                 Width="85" 
                 Height="22"
                 HorizontalAlignment="Left"
                 Margin="90,5,0,0"
-                ItemsSource="{Binding Data}"
-                DisplayMemberPath="Name"
-                SelectedIndex="{Binding Index}"
-                />-->
+                ItemsSource="{Binding KeyHoleModels}"
+                SelectedValue="{Binding KeyType2}"
+                />
             </Grid>
             <Grid>
                 <Button             
