@@ -14,9 +14,8 @@ namespace ProjectZavod.ViewModels
     {
         public string[] OrdersFiles;
         public string[] ResultsFiles;
-        //public string[] ModelsFiles;
-        public static string[] DoorModelsPath { get; set; }
-        public static string[] KeyHoleModelsPath { get; set; }
+        public static string DoorModelsPath = @"..\..\templates\Doors";
+        public static string KeyHoleModelsPath = @"..\..\templates\KeyHoles";
         public static string[] DoorModels { get; set; }
         public static string[] KeyHoleModels { get; set; }
 
@@ -27,9 +26,10 @@ namespace ProjectZavod.ViewModels
             get { return doorType; }
             set
             {
-                if (value != doorType)
+                var temp = string.Concat(DoorModelsPath, "\\", value);
+                if (temp != doorType)
                 {
-                    doorType = value;
+                    doorType = temp;
                     OnPropertyChanged("DoorType");
                 }
             }
@@ -41,9 +41,10 @@ namespace ProjectZavod.ViewModels
             get { return keyType1; }
             set
             {
-                if (value != keyType1)
+                var temp = string.Concat(KeyHoleModelsPath, "\\", value);
+                if (temp != keyType1)
                 {
-                    keyType1 = value;
+                    keyType1 = temp;
                     OnPropertyChanged("KeyType1");
                 }
             }
@@ -55,9 +56,10 @@ namespace ProjectZavod.ViewModels
             get { return keyType2; }
             set
             {
-                if (value != keyType2)
+                var temp = string.Concat(KeyHoleModelsPath, "\\", value);
+                if (temp != keyType2)
                 {
-                    keyType2 = value;
+                    keyType2 = temp;
                     OnPropertyChanged("KeyType2");
                 }
             }
@@ -110,10 +112,8 @@ namespace ProjectZavod.ViewModels
 
         public MainWindowVM()
         {
-            DoorModelsPath = Directory.GetDirectories(@"..\..\templates\Doors");
-            KeyHoleModelsPath = Directory.GetDirectories(@"..\..\templates\KeyHoles");
-            DoorModels = DoorModelsPath.Select(x => x.Split('\\').Last()).ToArray();
-            KeyHoleModels = KeyHoleModelsPath.Select(x => x.Split('\\').Last()).ToArray();
+            DoorModels = GetFoldersFromDirectory(DoorModelsPath).Select(x => x.Split('\\').Last()).ToArray();
+            KeyHoleModels = GetFoldersFromDirectory(KeyHoleModelsPath).Select(x => x.Split('\\').Last()).ToArray();
         }
 
         private ICommand _startProgrammButton;
@@ -133,16 +133,6 @@ namespace ProjectZavod.ViewModels
                 return _browseOrdersFolderButton ?? (_browseOrdersFolderButton = new CommandHandler(() => BrowseFolder(ref OrdersFiles), () => CanExecute));
             }
         }
-
-        //private ICommand _browseModelsFolderButton;
-        //public ICommand BrowseModelsFolderButton
-        //{
-        //    get
-        //    {
-
-        //        return _browseModelsFolderButton ?? (_browseModelsFolderButton = new CommandHandler(() => BrowseFolder(ref ModelsFiles), () => CanExecute));
-        //    }
-        //}
 
         private ICommand _browseResultsFolderButton;
         public ICommand BrowseResultsFolderButton
@@ -272,6 +262,11 @@ namespace ProjectZavod.ViewModels
             {
                 files = Directory.GetFiles(folderBrowser.SelectedPath);
             }
+        }
+
+        public string[] GetFoldersFromDirectory(string directory)
+        {
+            return Directory.GetDirectories(directory);
         }
     }
 }
