@@ -71,7 +71,7 @@
                 />
             </Grid>
             <Grid>
-                <Button             
+                <!--<Button             
                 x:Name="ModelsFolder" 
                 Command="{Binding BrowseModelsFolderButton}" 
                 HorizontalAlignment="Stretch"
@@ -85,7 +85,7 @@
                         <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
                         <TextBlock HorizontalAlignment="Center" Text="Папка Шаблонов" FontSize="12" Margin="0,0,10,0"/>
                 </StackPanel>
-            </Button>
+            </Button>-->
 
             <Button              
                 x:Name="BrowseResults" 

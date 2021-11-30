@@ -14,11 +14,11 @@ namespace ProjectZavod.ViewModels
     {
         public string[] OrdersFiles;
         public string[] ResultsFiles;
-        public string[] ModelsFiles;
-        public string[] DoorModelsPath { get; set; }
-        public string[] KeyHoleModelsPath { get; set; }
-        public string[] DoorModels { get; set; }
-        public string[] KeyHoleModels { get; set; }
+        //public string[] ModelsFiles;
+        public static string[] DoorModelsPath { get; set; }
+        public static string[] KeyHoleModelsPath { get; set; }
+        public static string[] DoorModels { get; set; }
+        public static string[] KeyHoleModels { get; set; }
 
 
         private string doorType;
@@ -103,6 +103,11 @@ namespace ProjectZavod.ViewModels
             }
         }
 
+        public string[] GetFilesFromDirectory(string directory) 
+        {
+            return Directory.GetFiles(directory);
+        }
+
         public MainWindowVM()
         {
             DoorModelsPath = Directory.GetDirectories(@"..\..\templates\Doors");
@@ -129,15 +134,15 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        private ICommand _browseModelsFolderButton;
-        public ICommand BrowseModelsFolderButton
-        {
-            get
-            {
+        //private ICommand _browseModelsFolderButton;
+        //public ICommand BrowseModelsFolderButton
+        //{
+        //    get
+        //    {
 
-                return _browseModelsFolderButton ?? (_browseModelsFolderButton = new CommandHandler(() => BrowseFolder(ref ModelsFiles), () => CanExecute));
-            }
-        }
+        //        return _browseModelsFolderButton ?? (_browseModelsFolderButton = new CommandHandler(() => BrowseFolder(ref ModelsFiles), () => CanExecute));
+        //    }
+        //}
 
         private ICommand _browseResultsFolderButton;
         public ICommand BrowseResultsFolderButton
@@ -227,8 +232,6 @@ namespace ProjectZavod.ViewModels
                     throw new Exception(OrdersFiles[i] + " File is not loaded, incorrect format");
                 }
 
-                //Line entity = new Line(new Vector2(5, 5), new Vector2(10, 5));
-                //ourFile.AddEntity(entity);
                 double width = 880;
                 double height = 2050;
                 ChangeSize(ourFile, width,height);
@@ -243,7 +246,7 @@ namespace ProjectZavod.ViewModels
         private void ChangeSize(DxfDocument ourFile, double width, double height)
         {
             double newWidth = width - 860;
-            double newHeigh = height - 2050;
+            double newHeigh = height - 2050; // переменная не используется? 
             foreach (var x in ourFile.Lines)
             {
                 if (x.Color.B == 255)
@@ -264,7 +267,7 @@ namespace ProjectZavod.ViewModels
         public void BrowseFolder(ref string[] files)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
-            DialogResult dialogResult = folderBrowser.ShowDialog();
+            folderBrowser.ShowDialog();
             if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
             {
                 files = Directory.GetFiles(folderBrowser.SelectedPath);
