@@ -12,8 +12,8 @@ namespace ProjectZavod.ViewModels
 {
     public class MainWindowVM: INotifyPropertyChanged
     {
-        public string[] OrdersFiles;
-        public string[] ResultsFiles;
+        public string OrdersPath;
+        public string ResultsPath;
         public static string DoorModelsPath = @"..\..\templates\Doors";
         public static string KeyHoleModelsPath = @"..\..\templates\KeyHoles";
         public static string[] DoorModels { get; set; }
@@ -130,7 +130,7 @@ namespace ProjectZavod.ViewModels
         {
             get
             {
-                return _browseOrdersFolderButton ?? (_browseOrdersFolderButton = new CommandHandler(() => BrowseFolder(ref OrdersFiles), () => CanExecute));
+                return _browseOrdersFolderButton ?? (_browseOrdersFolderButton = new CommandHandler(() => BrowseFolder(ref OrdersPath), () => CanExecute));
             }
         }
 
@@ -139,7 +139,7 @@ namespace ProjectZavod.ViewModels
         {
             get
             {
-                return _browseResultsFolderButton ?? (_browseResultsFolderButton = new CommandHandler(() => BrowseFolder(ref ResultsFiles), () => CanExecute));
+                return _browseResultsFolderButton ?? (_browseResultsFolderButton = new CommandHandler(() => BrowseFolder(ref ResultsPath), () => CanExecute));
             }
         }
 
@@ -208,18 +208,19 @@ namespace ProjectZavod.ViewModels
 
         public void MakeCut()
         {
-            if (OrdersFiles == null)
+            if (OrdersPath == null || ResultsPath == null)
             {
                 throw new Exception("не указан путь к папке");
             }
 
-            for(int i=0; i< OrdersFiles.Length; i++)
+            var orderFiles = GetFilesFromDirectory(OrdersPath);
+            for (int i=0; i< orderFiles.Length; i++)
             {
-                string file = string.Format("createdFile, {0}, .dxf", i);
-                DxfDocument ourFile = DxfDocument.Load(OrdersFiles[i]);
+                string file = string.Format($"{ResultsPath}\\createdFile{i}.dxf");
+                DxfDocument ourFile = DxfDocument.Load(orderFiles[i]);
                 if (ourFile == null)
                 {
-                    throw new Exception(OrdersFiles[i] + " File is not loaded, incorrect format");
+                    throw new Exception(orderFiles[i] + " File is not loaded, incorrect format");
                 }
 
                 double width = 880;
@@ -254,13 +255,13 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        public void BrowseFolder(ref string[] files)
+        public void BrowseFolder(ref string path)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             folderBrowser.ShowDialog();
             if (!string.IsNullOrWhiteSpace(folderBrowser.SelectedPath))
             {
-                files = Directory.GetFiles(folderBrowser.SelectedPath);
+                path = folderBrowser.SelectedPath;
             }
         }
 

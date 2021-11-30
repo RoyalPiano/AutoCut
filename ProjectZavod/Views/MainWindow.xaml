@@ -71,12 +71,27 @@
                 />
             </Grid>
             <Grid>
+                <!--<Button             
+                x:Name="ModelsFolder" 
+                Command="{Binding BrowseModelsFolderButton}" 
+                HorizontalAlignment="Stretch"
+                Margin="41,10,641,-8"
+                VerticalAlignment="Top" 
+                Width="110"
+                Background="White"
+                BorderThickness="0"  
+                Height="85">
+                    <StackPanel HorizontalAlignment="Stretch" Width="104">
+                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
+                        <TextBlock HorizontalAlignment="Center" Text="Папка Шаблонов" FontSize="12" Margin="0,0,10,0"/>
+                </StackPanel>
+            </Button>-->
 
-                <Button              
+            <Button              
                 x:Name="BrowseResults" 
                 Command="{Binding BrowseResultsFolderButton}" 
                 HorizontalAlignment="Stretch"
-                Margin="476,10,206,-8"
+                Margin="187,10,495,-8"
                 VerticalAlignment="Top" 
                 Width="110"
                 Background="White"
@@ -92,7 +107,7 @@
                 x:Name="BrowseOrders" 
                 Command="{Binding BrowseOrdersFolderButton}" 
                 HorizontalAlignment="Stretch"
-                Margin="259,10,423,-8"
+                Margin="36,10,646,-8"
                 VerticalAlignment="Top" 
                 Width="110"
                 Background="White"
