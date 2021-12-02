@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
+using ProjectZavod.Services;
 
 namespace ProjectZavod.ViewModels
 {
@@ -17,14 +19,70 @@ namespace ProjectZavod.ViewModels
             Worksheet excelSheet = wb.ActiveSheet;
             Height = excelSheet.Cells[11, "E"].Value.ToString();
             Width = excelSheet.Cells[16, "C"].Value.ToString();
-            NameOfKey1 = excelSheet.Cells[30, "G"].Value.ToString();
-            NameOfKey2 = excelSheet.Cells[32, "G"].Value.ToString();
+            KeyType1 = excelSheet.Cells[30, "G"].Value.ToString();
+            KeyType2 = excelSheet.Cells[32, "G"].Value.ToString();
             wb.Close();
         }
 
         public string Height { get; private set; }
         public string Width { get; private set; }
-        public string NameOfKey1 { get; private set; }
-        public string NameOfKey2 { get; private set; }
+        public string KeyType1 { get; private set; }
+        public string KeyType2 { get; private set; }
+        public string DoorType { get; private set; }
+
+        //public static string[] DoorModels = paths.DoorModelsPath.GetFoldersFromDirectory().Select(x => x.Split('\\').Last()).ToArray();
+        //public static string[] KeyHoleModels = paths.KeyHoleModelsPath.GetFoldersFromDirectory().Select(x => x.Split('\\').Last()).ToArray();
+
+        //private string keyType1;
+        //public string KeyType1
+        //{
+        //    get { return keyType1; }
+        //    set
+        //    {
+        //        var temp = string.Concat(Service<IPathsService>.GetService().LoadPaths().KeyHoleModelsPath, "\\", value);
+        //        if (temp != keyType1)
+        //        {
+        //            keyType1 = temp;
+        //            OnPropertyChanged("KeyType1");
+        //        }
+        //    }
+        //}
+
+        //private string keyType2;
+        //public string KeyType2
+        //{
+        //    get { return keyType2; }
+        //    set
+        //    {
+        //        var temp = string.Concat(Service<IPathsService>.GetService().LoadPaths().KeyHoleModelsPath, "\\", value);
+        //        if (temp != keyType2)
+        //        {
+        //            keyType2 = temp;
+        //            OnPropertyChanged("KeyType2");
+        //        }
+        //    }
+        //}
+
+        //private string doorType;
+        //public string DoorType
+        //{
+        //    get { return doorType; }
+        //    set
+        //    {
+        //        var temp = string.Concat(Service<IPathsService>.GetService().LoadPaths().DoorModelsPath, "\\", value);
+        //        if (temp != doorType)
+        //        {
+        //            doorType = temp;
+        //            OnPropertyChanged("DoorType");
+        //        }
+        //    }
+        //}
+
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //protected void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 }

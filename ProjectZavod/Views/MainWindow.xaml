@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        >
+    <!--x:Class="ProjectZavod.MainWindow"-->
 
     <Grid>
         <StackPanel>
-            <TextBlock FontSize="15">Размер: Ширина, Высота</TextBlock>
+            <!--<TextBlock FontSize="15">Размер: Ширина, Высота</TextBlock>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />
@@ -51,6 +53,7 @@
 
             <Grid>
                 <ComboBox 
+                SelectedValuePath="ProjectZavod.OrderParams"
                 Text="Замок 1"
                 Width="85" 
                 Height="22"
@@ -69,7 +72,7 @@
                 ItemsSource="{Binding KeyHoleModels}"
                 SelectedValue="{Binding KeyType2}"
                 />
-            </Grid>
+            </Grid>-->
             <Grid>
                 <!--<Button             
                 x:Name="ModelsFolder" 

@@ -72,9 +72,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\IPathsService.cs" />
+    <Compile Include="Services\PathsService.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="ViewModels\CommandHandler.cs" />
+    <Compile Include="ViewModels\DxfRedactor.cs" />
+    <Compile Include="ViewModels\FileSystemExtensions.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\OrderParams.cs" />
+    <Compile Include="ViewModels\Programm.cs" />
+    <Compile Include="ViewModels\RootPaths.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
