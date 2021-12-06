@@ -12,76 +12,87 @@ namespace ProjectZavod.ViewModels
 {
     public class DxfRedactor
     {
+        const int constWidth = 860;
+        const int constHeight = 2050;
         private RootPaths paths = new RootPaths();
+
         public DxfDocument ChangeSize(DxfDocument ourFile, double width, double height)
-        {
-            double newWidth = width - 860;
-            double newHeigh = height - 2050;
+        {         
+            double newWidth = width - constWidth;
+            double newHeigh = height - constHeight;
             foreach (var x in ourFile.Lines)
             {
-                if (x.Color.G == 255)
-                    x.EndPoint = x.EndPoint + new Vector3(newWidth, 0, 0);
-                if (x.Color.B == 255)
-                {
-                    x.StartPoint = x.StartPoint + new Vector3(newWidth, 0, 0);
-                    x.EndPoint = x.EndPoint + new Vector3(newWidth, 0, 0);
-                }
-                if (x.Color.R == 255)
-                    x.EndPoint = x.EndPoint - new Vector3(0, newHeigh, 0);
-                if (x.Color.R == 254)
-                {
-                    x.StartPoint = x.StartPoint - new Vector3(0, newHeigh, 0);
-                    x.EndPoint = x.EndPoint - new Vector3(0, newHeigh, 0);
-                }
+                LineChangeSize(x, new Vector3(newWidth, 0, 0), x.Color.G == 255, x.Color.B == 255);
+                LineChangeSize(x, new Vector3(0, newHeigh, 0), x.Color.R == 255, x.Color.R == 254);
             }
             foreach (var x in ourFile.Circles)
             {
                 if (x.Color.B == 255)
-                    x.Center = x.Center + new Vector3(newWidth, 0, 0);
+                    x.Center += new Vector3(newWidth, 0, 0);
             }
             return ourFile;
         }
 
-        public DxfDocument AddLock(DxfDocument ourFile, DxfDocument lockFile, DxfDocument lockFile2)
+        private static void LineChangeSize(Line x, Vector3 vectorWidth, bool firstArg, bool secondArg)
+        {
+            if (firstArg)
+                x.EndPoint += vectorWidth;
+            if (secondArg)
+            {
+                x.StartPoint += vectorWidth;
+                x.EndPoint += vectorWidth;
+            }
+        }
+
+        private static DxfDocument AddSeckondPositionLocks(DxfDocument ourFile, DxfDocument lockModelFile)
         {
             var listEntites = new List<EntityObject>();
-            if (lockFile != null)
-                foreach (Layout layout in lockFile.Layouts)
+            foreach (Layout layout in lockModelFile.Layouts)
+            {
+                List<DxfObject> entities = lockModelFile.Layouts.GetReferences(layout);
+                Vector3 lenghtToSecondHole = new Vector3(ourFile.Points.ToArray()[0].Position.X, 0, 0) - new Vector3(ourFile.Points.ToArray()[1].Position.X, 0, 0);
+                foreach (DxfObject o in entities)
                 {
-                    List<DxfObject> entities = lockFile.Layouts.GetReferences(layout);
-                    foreach (DxfObject o in entities)
+                    EntityObject entity = o as EntityObject;
+                    switch (entity.Type)
                     {
-                        EntityObject entity = o as EntityObject;
-                        listEntites.Add(entity);
+                        case EntityType.Arc:
+                            var arc = (Arc)entity;
+                            arc.Center = arc.Center + lenghtToSecondHole;
+                            break;
+                        case EntityType.Circle:
+                            var cir = (Circle)entity;
+                            cir.Center = cir.Center + lenghtToSecondHole;
+                            break;
+                        case EntityType.Line:
+                            var line = (Line)entity;
+                            line.StartPoint = line.StartPoint + lenghtToSecondHole;
+                            line.EndPoint = line.EndPoint + lenghtToSecondHole;
+                            break;                        
                     }
+                    listEntites.Add(entity);
                 }
-            if (lockFile2 != null)
-                foreach (Layout layout in lockFile2.Layouts)
+            }
+            foreach (var y in listEntites)
+            {
+                var x = y.Clone();
+                ourFile.AddEntity((EntityObject)x);
+            }
+            return ourFile;
+        }
+
+        private static DxfDocument AddFirstPositionLocks(DxfDocument ourFile, DxfDocument lockFile)
+        {
+            var listEntites = new List<EntityObject>();
+            foreach (Layout layout in lockFile.Layouts)
+            {
+                List<DxfObject> entities = lockFile.Layouts.GetReferences(layout);
+                foreach (DxfObject o in entities)
                 {
-                    List<DxfObject> entities = lockFile2.Layouts.GetReferences(layout);
-                    Vector3 lenghtToSecondHole = new Vector3(ourFile.Points.ToArray()[0].Position.X, 0, 0) - new Vector3(ourFile.Points.ToArray()[1].Position.X, 0, 0);
-                    foreach (DxfObject o in entities)
-                    {
-                        EntityObject entity = o as EntityObject;
-                        switch ((int)entity.Type)
-                        {
-                            case 1:
-                                var cir = (Circle)entity;
-                                cir.Center = cir.Center + lenghtToSecondHole;
-                                break;
-                            case 10:
-                                var line = (Line)entity;
-                                line.StartPoint = line.StartPoint + lenghtToSecondHole;
-                                line.EndPoint = line.EndPoint + lenghtToSecondHole;
-                                break;
-                            case 0:
-                                var arc = (Arc)entity;
-                                arc.Center = arc.Center + lenghtToSecondHole;
-                                break;
-                        }
-                        listEntites.Add(entity);
-                    }
+                    EntityObject entity = o as EntityObject;
+                    listEntites.Add(entity);
                 }
+            }
             foreach (var y in listEntites)
             {
                 var x = y.Clone();
