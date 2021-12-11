@@ -16,10 +16,10 @@ namespace ProjectZavod.ViewModels
         const int constHeight = 2050;
         private RootPaths paths = new RootPaths();
 
-        public DxfDocument ChangeSize(DxfDocument ourFile, double width, double height)
+        public DxfDocument ChangeSize(DxfDocument ourFile, double fileWidth, double fileHeight, double needWidth, double needHeight)
         {         
-            double newWidth = width - constWidth;
-            double newHeigh = height - constHeight;
+            double newWidth = needWidth - constWidth;
+            double newHeigh = needHeight - constHeight;
             foreach (var x in ourFile.Lines)
             {
                 LineChangeSize(x, new Vector3(newWidth, 0, 0), x.Color.G == 255, x.Color.B == 255);
