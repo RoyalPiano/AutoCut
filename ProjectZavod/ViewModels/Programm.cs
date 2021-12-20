@@ -40,14 +40,14 @@ namespace ProjectZavod.ViewModels
                         {
                             var lockFile1 = DxfDocument.Load(paths.KeyHoleModelsPath.AddPath(orderParams.KeyType1)
                                 .GetFilesFromDirectory().First(w => w.StartsWith(file.Split(' ')[2])));
-                            dxfFile = dxfFile.AddKeyhole(lockFile1);
+                            dxfFile = dxfFile.AddFirstPositionLocks(lockFile1);
                         }
 
                         if (orderParams.KeyType2 != "Нет")
                         {
                             var lockFile2 = DxfDocument.Load(paths.KeyHoleModelsPath.AddPath(orderParams.KeyType2)
                                 .GetFilesFromDirectory().First(w => w.StartsWith(file.Split(' ')[2])));
-                            dxfFile = dxfFile.AddKeyhole(lockFile2);
+                            dxfFile = dxfFile.AddSecondPositionLocks(lockFile2);
                         }
                     }
 
