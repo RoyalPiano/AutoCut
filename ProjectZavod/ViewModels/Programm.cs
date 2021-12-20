@@ -51,7 +51,7 @@ namespace ProjectZavod.ViewModels
                         }
                     }
 
-                    dxfFile.Save(paths.ResultsPath.AddPath(order).AddPath(file));
+                    dxfFile.Save(paths.ResultsPath.AddPath(order.Split('\\').Last()).AddPath(file.Split('\\').Last()));
                 }
             }
         }
