@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace ProjectZavod.ViewModels
 {
-    public class DxfRedactor
+    public static class DxfExtensions
     {
         const int constWidth = 860;
         const int constHeight = 2050;
-        private RootPaths paths = new RootPaths();
 
-        public DxfDocument ChangeSize(DxfDocument ourFile, double needWidth, double needHeight)
-        {         
+        public static DxfDocument ChangeSize(this DxfDocument ourFile, double needWidth, double needHeight)
+        {
             double newWidth = needWidth - constWidth;
             double newHeigh = needHeight - constHeight;
             foreach (var x in ourFile.Lines)
@@ -44,7 +43,7 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        //private static DxfDocument AddSeckondPositionLocks(DxfDocument ourFile, DxfDocument lockModelFile)
+        //public static DxfDocument AddSecondPositionLocks(this DxfDocument ourFile, DxfDocument lockModelFile)
         //{
         //    var listEntites = new List<EntityObject>();
         //    foreach (Layout layout in lockModelFile.Layouts)
@@ -81,7 +80,7 @@ namespace ProjectZavod.ViewModels
         //    return ourFile;
         //}
 
-        private static DxfDocument AddKeyhole(DxfDocument ourFile, DxfDocument lockFile)
+        public static DxfDocument AddKeyhole(this DxfDocument ourFile, DxfDocument lockFile)
         {
             var listEntites = new List<EntityObject>();
             foreach (Layout layout in lockFile.Layouts)
@@ -101,27 +100,28 @@ namespace ProjectZavod.ViewModels
             return ourFile;
         }
 
-        public void MakeCut()
-        {
-            var orderFiles = paths.OrdersPath.GetFilesFromDirectory();
-            for (int i = 0; i < orderFiles.Length; i++)
-            {
-                string file = string.Format($"{paths.ResultsPath}\\createdFile{i}.dxf");
-                DxfDocument ourFile = DxfDocument.Load(orderFiles[i]);
-                if (ourFile == null)
-                {
-                    throw new Exception(orderFiles[i] + " File is not loaded, incorrect format");
-                }
+        //public static void MakeCut()
+        //{
+        //    var orderFiles = paths.OrdersPath.GetFilesFromDirectory();
+        //    for (int i = 0; i < orderFiles.Length; i++)
+        //    {
+        //        string file = string.Format($"{paths.ResultsPath}\\createdFile{i}.dxf");
+        //        DxfDocument ourFile = DxfDocument.Load(orderFiles[i]);
+        //        if (ourFile == null)
+        //        {
+        //            throw new Exception(orderFiles[i] + " File is not loaded, incorrect format");
+        //        }
 
-                double width = 880;
-                double height = 2050;
-                ChangeSize(ourFile, width, height);
-                ourFile.Save(file);
+        //        double width = 880;
+        //        double height = 2050;
+        //        ChangeSize(ourFile, width, height);
 
-                DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(file, out _);
-                if (dxfVersion < DxfVersion.AutoCad2000)
-                    throw new Exception("you are using an old AutoCad Version");
-            }
-        }
+        //        DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(file, out _);
+        //        if (dxfVersion < DxfVersion.AutoCad2000)
+        //            throw new Exception("you are using an old AutoCad Version");
+
+        //        new DxfDocument().Save(file);
+        //    }
+        //}
     }
 }

@@ -19,5 +19,15 @@ namespace ProjectZavod.ViewModels
         {
             return Directory.GetFiles(directory);
         }
+
+        public static void CreateFolder(this string directory)
+        {
+            Directory.CreateDirectory(directory);
+        }
+
+        public static string AddPath(this string first, string second)
+        {
+            return string.Format($"{first}\\{second}");
+        }
     }
 }

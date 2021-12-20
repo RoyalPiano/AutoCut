@@ -76,7 +76,7 @@
     <Compile Include="Services\PathsService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="ViewModels\CommandHandler.cs" />
-    <Compile Include="ViewModels\DxfRedactor.cs" />
+    <Compile Include="ViewModels\DxfExtensions.cs" />
     <Compile Include="ViewModels\FileSystemExtensions.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\OrderParams.cs" />
