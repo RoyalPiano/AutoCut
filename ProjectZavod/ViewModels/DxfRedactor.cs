@@ -16,7 +16,7 @@ namespace ProjectZavod.ViewModels
         const int constHeight = 2050;
         private RootPaths paths = new RootPaths();
 
-        public DxfDocument ChangeSize(DxfDocument ourFile, double fileWidth, double fileHeight, double needWidth, double needHeight)
+        public DxfDocument ChangeSize(DxfDocument ourFile, double needWidth, double needHeight)
         {         
             double newWidth = needWidth - constWidth;
             double newHeigh = needHeight - constHeight;
@@ -44,44 +44,44 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        private static DxfDocument AddSeckondPositionLocks(DxfDocument ourFile, DxfDocument lockModelFile)
-        {
-            var listEntites = new List<EntityObject>();
-            foreach (Layout layout in lockModelFile.Layouts)
-            {
-                List<DxfObject> entities = lockModelFile.Layouts.GetReferences(layout);
-                Vector3 lenghtToSecondHole = new Vector3(ourFile.Points.ToArray()[0].Position.X, 0, 0) - new Vector3(ourFile.Points.ToArray()[1].Position.X, 0, 0);
-                foreach (DxfObject o in entities)
-                {
-                    EntityObject entity = o as EntityObject;
-                    switch (entity.Type)
-                    {
-                        case EntityType.Arc:
-                            var arc = (Arc)entity;
-                            arc.Center = arc.Center + lenghtToSecondHole;
-                            break;
-                        case EntityType.Circle:
-                            var cir = (Circle)entity;
-                            cir.Center = cir.Center + lenghtToSecondHole;
-                            break;
-                        case EntityType.Line:
-                            var line = (Line)entity;
-                            line.StartPoint = line.StartPoint + lenghtToSecondHole;
-                            line.EndPoint = line.EndPoint + lenghtToSecondHole;
-                            break;                        
-                    }
-                    listEntites.Add(entity);
-                }
-            }
-            foreach (var y in listEntites)
-            {
-                var x = y.Clone();
-                ourFile.AddEntity((EntityObject)x);
-            }
-            return ourFile;
-        }
+        //private static DxfDocument AddSeckondPositionLocks(DxfDocument ourFile, DxfDocument lockModelFile)
+        //{
+        //    var listEntites = new List<EntityObject>();
+        //    foreach (Layout layout in lockModelFile.Layouts)
+        //    {
+        //        List<DxfObject> entities = lockModelFile.Layouts.GetReferences(layout);
+        //        Vector3 lenghtToSecondHole = new Vector3(ourFile.Points.ToArray()[0].Position.X, 0, 0) - new Vector3(ourFile.Points.ToArray()[1].Position.X, 0, 0);
+        //        foreach (DxfObject o in entities)
+        //        {
+        //            EntityObject entity = o as EntityObject;
+        //            switch (entity.Type)
+        //            {
+        //                case EntityType.Arc:
+        //                    var arc = (Arc)entity;
+        //                    arc.Center = arc.Center + lenghtToSecondHole;
+        //                    break;
+        //                case EntityType.Circle:
+        //                    var cir = (Circle)entity;
+        //                    cir.Center = cir.Center + lenghtToSecondHole;
+        //                    break;
+        //                case EntityType.Line:
+        //                    var line = (Line)entity;
+        //                    line.StartPoint = line.StartPoint + lenghtToSecondHole;
+        //                    line.EndPoint = line.EndPoint + lenghtToSecondHole;
+        //                    break;                        
+        //            }
+        //            listEntites.Add(entity);
+        //        }
+        //    }
+        //    foreach (var y in listEntites)
+        //    {
+        //        var x = y.Clone();
+        //        ourFile.AddEntity((EntityObject)x);
+        //    }
+        //    return ourFile;
+        //}
 
-        private static DxfDocument AddFirstPositionLocks(DxfDocument ourFile, DxfDocument lockFile)
+        private static DxfDocument AddKeyhole(DxfDocument ourFile, DxfDocument lockFile)
         {
             var listEntites = new List<EntityObject>();
             foreach (Layout layout in lockFile.Layouts)
