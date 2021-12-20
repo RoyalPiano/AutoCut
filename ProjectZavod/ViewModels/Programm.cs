@@ -38,15 +38,18 @@ namespace ProjectZavod.ViewModels
                     {
                         if (orderParams.KeyType1 != "Нет")
                         {
+                            var temp = file.Split('\\').Last().Split(' ')[1];
+                            var temp2 = paths.KeyHoleModelsPath.AddPath(orderParams.KeyType1)
+                                .GetFilesFromDirectory();
                             var lockFile1 = DxfDocument.Load(paths.KeyHoleModelsPath.AddPath(orderParams.KeyType1)
-                                .GetFilesFromDirectory().First(w => w.StartsWith(file.Split(' ')[2])));
+                                .GetFilesFromDirectory().First(w => w.Split('\\').Last().StartsWith(file.Split('\\').Last().Split(' ')[1])));
                             dxfFile = dxfFile.AddFirstPositionLocks(lockFile1);
                         }
 
                         if (orderParams.KeyType2 != "Нет")
                         {
                             var lockFile2 = DxfDocument.Load(paths.KeyHoleModelsPath.AddPath(orderParams.KeyType2)
-                                .GetFilesFromDirectory().First(w => w.StartsWith(file.Split(' ')[2])));
+                                .GetFilesFromDirectory().First(w => w.Split('\\').Last().StartsWith(file.Split('\\').Last().Split(' ')[1])));
                             dxfFile = dxfFile.AddSecondPositionLocks(lockFile2);
                         }
                     }
