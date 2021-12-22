@@ -55,7 +55,7 @@ namespace ProjectZavod.ViewModels
 
                         if (orderParams.KeyType2 != "Нет")
                         {
-                            dxfFile = dxfFile.UniteModels(GetLockModel(orderParams.KeyType2, file, paths.KeyHoleModelsPath), new Vector3(0, 0, 243));
+                            dxfFile = dxfFile.UniteModels(GetLockModel(orderParams.KeyType2, file, paths.KeyHoleModelsPath), new Vector3(243, 0, 0));
                             fileName = fileName.Replace(".dxf", $" {orderParams.KeyType2}.dxf");
                         }
                     }
@@ -71,7 +71,7 @@ namespace ProjectZavod.ViewModels
                         {
                             for (int i = 0; i < orderParams.LatchSum; i++)
                             {
-                                dxfFile.UniteModels(GetLatchModel(file, paths.LatchModelsPath), new Vector3(0, 0, deltaZ * i));
+                                dxfFile.UniteModels(GetLatchModel(file, paths.LatchModelsPath), new Vector3(deltaZ * i, 0, 0));
                             }
                         }
                     }
