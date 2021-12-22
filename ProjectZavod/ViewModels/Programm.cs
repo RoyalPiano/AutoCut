@@ -36,7 +36,14 @@ namespace ProjectZavod.ViewModels
                     var dxfFile = DxfDocument.Load(file);
                     dxfFile.CheckLoadError(fileName);
                     dxfFile = dxfFile.ChangeSize(orderParams.Width, orderParams.Height);
-                    fileName = fileName.Replace(fileName.Split('\\').Last().Split(' ')[2].Replace(".dxf", ""), $"{orderParams.Width}x{orderParams.Height}");
+                    var temp = fileName.Split('\\').Last().Split(' ')[2].Replace(".dxf", "");
+                    if (temp == "860")
+                        fileName = fileName.Replace(temp, $"{orderParams.Width}");
+                    else if (temp == "2050")
+                        fileName = fileName.Replace(temp, $"{orderParams.Height}");
+                    else fileName = fileName.Replace(temp, $"{orderParams.Width}x{orderParams.Height}");
+
+                    //fileName = fileName.Replace(fileName.Split('\\').Last().Split(' ')[2].Replace(".dxf", ""), $"{orderParams.Width}x{orderParams.Height}");
 
                     if (file.Split('\\').Last().Contains("зам"))
                     {
