@@ -80,26 +80,6 @@ namespace ProjectZavod.ViewModels
             return ourFile;
         }
 
-        //public static DxfDocument AddFirstPositionLocks(this DxfDocument ourFile, DxfDocument lockFile)
-        //{
-        //    var listEntites = new List<EntityObject>();
-        //    foreach (Layout layout in lockFile.Layouts)
-        //    {
-        //        List<DxfObject> entities = lockFile.Layouts.GetReferences(layout);
-        //        foreach (DxfObject o in entities)
-        //        {
-        //            EntityObject entity = o as EntityObject;
-        //            listEntites.Add(entity);
-        //        }
-        //    }
-        //    foreach (var y in listEntites)
-        //    {
-        //        var x = y.Clone();
-        //        ourFile.AddEntity((EntityObject)x);
-        //    }
-        //    return ourFile;
-        //}
-
         public static void CheckLoadError(this DxfDocument ourFile, string filePath)
         {
             if (ourFile == null)
@@ -111,29 +91,5 @@ namespace ProjectZavod.ViewModels
             if (dxfVersion < DxfVersion.AutoCad2000)
                 throw new Exception("you are using an old AutoCad Version");
         }
-
-        //public static void MakeCut()
-        //{
-        //    var orderFiles = paths.OrdersPath.GetFilesFromDirectory();
-        //    for (int i = 0; i < orderFiles.Length; i++)
-        //    {
-        //        string file = string.Format($"{paths.ResultsPath}\\createdFile{i}.dxf");
-        //        DxfDocument ourFile = DxfDocument.Load(orderFiles[i]);
-        //        if (ourFile == null)
-        //        {
-        //            throw new Exception(orderFiles[i] + " File is not loaded, incorrect format");
-        //        }
-
-        //        double width = 880;
-        //        double height = 2050;
-        //        ChangeSize(ourFile, width, height);
-
-        //        DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(file, out _);
-        //        if (dxfVersion<DxfVersion.AutoCad2000)
-        //            throw new Exception("you are using an old AutoCad Version");
-
-        //        new DxfDocument().Save(file);
-        //    }
-        //}
     }
 }
