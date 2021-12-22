@@ -120,6 +120,7 @@
   <ItemGroup>
     <Folder Include="templates\Doors\" />
     <Folder Include="templates\KeyHoles\" />
+    <Folder Include="templates\Latches\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

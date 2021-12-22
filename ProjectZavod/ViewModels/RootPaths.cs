@@ -25,6 +25,15 @@ namespace ProjectZavod.ViewModels
             }
         }
 
+        private string _latchModelsPath = @"..\..\templates\Latches";
+        public string LatchModelsPath
+        {
+            get
+            {
+                return _latchModelsPath;
+            }
+        }
+
 
         public string OrdersPath;
         public string ResultsPath;

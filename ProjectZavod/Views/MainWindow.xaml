@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="294.324" Width="651.621"
         >
     <!--x:Class="ProjectZavod.MainWindow"-->
 
@@ -94,7 +94,7 @@
                 x:Name="BrowseResults" 
                 Command="{Binding BrowseResultsFolderButton}" 
                 HorizontalAlignment="Stretch"
-                Margin="187,10,495,-8"
+                Margin="353,10,181,-8"
                 VerticalAlignment="Top" 
                 Width="110"
                 Background="White"
@@ -110,7 +110,7 @@
                 x:Name="BrowseOrders" 
                 Command="{Binding BrowseOrdersFolderButton}" 
                 HorizontalAlignment="Stretch"
-                Margin="36,10,646,-8"
+                Margin="123,10,411,-8"
                 VerticalAlignment="Top" 
                 Width="110"
                 Background="White"
@@ -122,18 +122,16 @@
                     </StackPanel>
                 </Button>
             </Grid>
-            
             <Button             
                 x:Name="StartButton" 
                 Command="{Binding StartProgrammButton}" 
                 HorizontalAlignment="Right"
-                Margin="0,1,1,1"
+                Margin="0,125,0,1"                
                 
-                VerticalAlignment="Top" 
                 Width="90"
                 Background="White"
                 Content="Start"
-                Height="30"/>
+                Height="42"/>
         </StackPanel>
     </Grid>
 </Window>

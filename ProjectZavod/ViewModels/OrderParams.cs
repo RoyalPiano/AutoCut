@@ -22,6 +22,8 @@ namespace ProjectZavod.ViewModels
             KeyType1 = excelSheet.Cells[30, "G"].Value.ToString();
             KeyType2 = excelSheet.Cells[32, "G"].Value.ToString();
             DoorType = excelSheet.Cells[20, "G"].Value.ToString().Replace("/", "");
+            string latchSum = excelSheet.Cells[35, "G"].Value.ToString();
+            LatchSum = int.Parse(latchSum.Substring(0, 1));
             wb.Close();
         }
 
@@ -30,6 +32,7 @@ namespace ProjectZavod.ViewModels
         public string KeyType1 { get; private set; }
         public string KeyType2 { get; private set; }
         public string DoorType { get; private set; }
+        public int LatchSum { get; private set; }
 
         //public static string[] DoorModels = paths.DoorModelsPath.GetFoldersFromDirectory().Select(x => x.Split('\\').Last()).ToArray();
         //public static string[] KeyHoleModels = paths.KeyHoleModelsPath.GetFoldersFromDirectory().Select(x => x.Split('\\').Last()).ToArray();

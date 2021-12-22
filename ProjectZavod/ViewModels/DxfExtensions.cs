@@ -14,7 +14,6 @@ namespace ProjectZavod.ViewModels
     {
         const int constWidth = 860;
         const int constHeight = 2050;
-        static Vector3 lenghtToSecondHole = new Vector3(0, 0, 243);
 
         public static DxfDocument ChangeSize(this DxfDocument ourFile, double needWidth, double needHeight)
         {
@@ -44,12 +43,12 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        public static DxfDocument AddSecondPositionLocks(this DxfDocument ourFile, DxfDocument lockModelFile)
+        public static DxfDocument UniteModels(this DxfDocument ourFile, DxfDocument modelToAdd, Vector3 deltaVector)
         {
             var listEntites = new List<EntityObject>();
-            foreach (Layout layout in lockModelFile.Layouts)
+            foreach (Layout layout in modelToAdd.Layouts)
             {
-                List<DxfObject> entities = lockModelFile.Layouts.GetReferences(layout);
+                List<DxfObject> entities = modelToAdd.Layouts.GetReferences(layout);
                 
                 foreach (DxfObject o in entities)
                 {
@@ -58,16 +57,16 @@ namespace ProjectZavod.ViewModels
                     {
                         case EntityType.Arc:
                             var arc = (Arc)entity;
-                            arc.Center = arc.Center + lenghtToSecondHole;
+                            arc.Center = arc.Center + deltaVector;
                             break;
                         case EntityType.Circle:
                             var cir = (Circle)entity;
-                            cir.Center = cir.Center + lenghtToSecondHole;
+                            cir.Center = cir.Center + deltaVector;
                             break;
                         case EntityType.Line:
                             var line = (Line)entity;
-                            line.StartPoint = line.StartPoint + lenghtToSecondHole;
-                            line.EndPoint = line.EndPoint + lenghtToSecondHole;
+                            line.StartPoint = line.StartPoint + deltaVector;
+                            line.EndPoint = line.EndPoint + deltaVector;
                             break;
                     }
                     listEntites.Add(entity);
@@ -81,24 +80,36 @@ namespace ProjectZavod.ViewModels
             return ourFile;
         }
 
-        public static DxfDocument AddFirstPositionLocks(this DxfDocument ourFile, DxfDocument lockFile)
+        //public static DxfDocument AddFirstPositionLocks(this DxfDocument ourFile, DxfDocument lockFile)
+        //{
+        //    var listEntites = new List<EntityObject>();
+        //    foreach (Layout layout in lockFile.Layouts)
+        //    {
+        //        List<DxfObject> entities = lockFile.Layouts.GetReferences(layout);
+        //        foreach (DxfObject o in entities)
+        //        {
+        //            EntityObject entity = o as EntityObject;
+        //            listEntites.Add(entity);
+        //        }
+        //    }
+        //    foreach (var y in listEntites)
+        //    {
+        //        var x = y.Clone();
+        //        ourFile.AddEntity((EntityObject)x);
+        //    }
+        //    return ourFile;
+        //}
+
+        public static void CheckLoadError(this DxfDocument ourFile, string filePath)
         {
-            var listEntites = new List<EntityObject>();
-            foreach (Layout layout in lockFile.Layouts)
+            if (ourFile == null)
             {
-                List<DxfObject> entities = lockFile.Layouts.GetReferences(layout);
-                foreach (DxfObject o in entities)
-                {
-                    EntityObject entity = o as EntityObject;
-                    listEntites.Add(entity);
-                }
+                throw new Exception(ourFile + " File is not loaded, incorrect format");
             }
-            foreach (var y in listEntites)
-            {
-                var x = y.Clone();
-                ourFile.AddEntity((EntityObject)x);
-            }
-            return ourFile;
+
+            DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(filePath, out _);
+            if (dxfVersion < DxfVersion.AutoCad2000)
+                throw new Exception("you are using an old AutoCad Version");
         }
 
         //public static void MakeCut()
@@ -118,7 +129,7 @@ namespace ProjectZavod.ViewModels
         //        ChangeSize(ourFile, width, height);
 
         //        DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(file, out _);
-        //        if (dxfVersion < DxfVersion.AutoCad2000)
+        //        if (dxfVersion<DxfVersion.AutoCad2000)
         //            throw new Exception("you are using an old AutoCad Version");
 
         //        new DxfDocument().Save(file);
