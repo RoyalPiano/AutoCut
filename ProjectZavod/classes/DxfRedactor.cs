@@ -87,7 +87,7 @@ namespace ProjectZavod.ViewModels
 
         private FileInfo RemoveExtraElementFromName(FileInfo fileInfo)
         {
-            return new FileInfo(fileInfo.FullName.Replace("зд", ""));
+            return new FileInfo(fileInfo.FullName.Replace("зд ", ""));
         }
 
         private FileInfo AddKeyLockToFileName(FileInfo fileInfo, string typeOfKeyLock)
@@ -97,12 +97,12 @@ namespace ProjectZavod.ViewModels
 
         private FileInfo SetNewMeasurementsInFileName(FileInfo fileInfo, OrderParams orderParams)
         {
-            var tempMeasure = fileInfo.Name.Split(' ')[2].Replace(".dxf", "");
-            if (tempMeasure == widthTemplate)
-                fileInfo = new FileInfo(fileInfo.Name.Replace(tempMeasure, $"{orderParams.Width}"));
-            else if (tempMeasure == heightTemplate)
-                fileInfo = new FileInfo(fileInfo.FullName.Replace(tempMeasure, $"{orderParams.Height}"));// заметка
-            else fileInfo = new FileInfo(fileInfo.FullName.Replace(tempMeasure, $"{orderParams.Width}x{orderParams.Height}"));
+            var tempMeasure = fileInfo.Name;
+            if (tempMeasure.Contains(widthTemplate))
+                fileInfo = new FileInfo(fileInfo.Name.Replace(widthTemplate, $"{orderParams.Width}"));
+            else if (tempMeasure.Contains(heightTemplate))
+                fileInfo = new FileInfo(fileInfo.FullName.Replace(heightTemplate, $"{orderParams.Height}"));
+            else fileInfo = new FileInfo(fileInfo.FullName.Replace($"{widthTemplate}x{heightTemplate}", $"{orderParams.Width}x{orderParams.Height}"));
             return fileInfo;
         }
 
