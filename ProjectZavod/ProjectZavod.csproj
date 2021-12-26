@@ -76,7 +76,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="classes\DTOs\DxfFileDTO.cs" />
-    <Compile Include="classes\DTOs\OrderParamsDTO.cs" />
     <Compile Include="classes\OrderReader.cs" />
     <Compile Include="Interfaces\IParamsReader.cs" />
     <Compile Include="Services\IPathsService.cs" />

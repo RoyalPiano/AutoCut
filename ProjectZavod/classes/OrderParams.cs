@@ -13,14 +13,14 @@ namespace ProjectZavod.ViewModels
 {
     public class OrderParams
     {
-        public OrderParams(OrderParamsDTO orderParamsDTO)
+        public OrderParams(double height, double width, KeyLock keyType1, KeyLock keyType2, string doorType, int latchSum)
         {
-            Height = orderParamsDTO.Height;
-            Width = orderParamsDTO.Width;
-            KeyType1 = new KeyLock(orderParamsDTO.KeyType1);
-            KeyType2 = new KeyLock(orderParamsDTO.KeyType2);
-            DoorType = orderParamsDTO.DoorType;
-            LatchSum = orderParamsDTO.LatchSum;
+            Height = height;
+            Width = width;
+            KeyType1 = keyType1;
+            KeyType2 = keyType2;
+            DoorType = doorType;
+            LatchSum = latchSum;
         }
 
         public double Height { get; private set; }

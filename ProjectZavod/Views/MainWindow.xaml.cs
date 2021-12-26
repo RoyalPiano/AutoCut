@@ -6,15 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-//using Microsoft.WindowsAPICodePack.Dialogs;
-//using System.Windows.Shapes;
 using netDxf;
 using netDxf.Entities;
 using netDxf.Header;
@@ -33,14 +24,16 @@ namespace ProjectZavod
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM(ConfigureContainer());
+            var container = ConfigureContainer();
+            DataContext = new MainWindowVM(container);
         }
 
-        public StandardKernel ConfigureContainer()
+        public static StandardKernel ConfigureContainer()
         {
             var container = new StandardKernel();
             container.Bind<RootPaths>().ToSelf().InSingletonScope();
             container.Bind<IParamsReader>().To<OrderReader>().InSingletonScope();
+            container.Bind<MainWindowVM>().ToSelf();
             return container;
         }
     }

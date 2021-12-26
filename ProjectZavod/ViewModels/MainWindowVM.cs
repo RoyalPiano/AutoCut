@@ -17,14 +17,13 @@ namespace ProjectZavod.ViewModels
 {
     public class MainWindowVM
     {
-        private DxfRedactor programm;
+        private DxfRedactor dxfRedactor;
         private StandardKernel container;
 
         public MainWindowVM(StandardKernel container)
         {
-            programm = new DxfRedactor(container);
+            dxfRedactor = new DxfRedactor(container);
             this.container = container;
-            //Service<IPathsService>.RegisterService(new PathsService());
         }
 
         private ICommand _startProgrammButton;
@@ -32,7 +31,7 @@ namespace ProjectZavod.ViewModels
         {
             get
             {
-                return _startProgrammButton ?? (_startProgrammButton = new CommandHandler(() => programm.CreateTransformedTemplates(), () => CanExecuteStart()));
+                return _startProgrammButton ?? (_startProgrammButton = new CommandHandler(() => dxfRedactor.CreateTransformedTemplates(), () => CanExecuteStart()));
             }
         }
 
@@ -72,7 +71,7 @@ namespace ProjectZavod.ViewModels
 
         public bool CanExecuteStart()
         {
-            return (container.Get<RootPaths>().OrdersPath != null && container.Get<RootPaths>().ResultsPath != null);
+            return container.Get<RootPaths>().OrdersPath != null && container.Get<RootPaths>().ResultsPath != null;
         }
     }
 }
