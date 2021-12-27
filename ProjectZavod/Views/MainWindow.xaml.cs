@@ -25,7 +25,7 @@ namespace ProjectZavod
         {
             InitializeComponent();
             var container = ConfigureContainer();
-            DataContext = new MainWindowVM(container);
+            DataContext = container.Get<MainWindowVM>();
         }
 
         public static StandardKernel ConfigureContainer()
@@ -33,7 +33,7 @@ namespace ProjectZavod
             var container = new StandardKernel();
             container.Bind<RootPaths>().ToSelf().InSingletonScope();
             container.Bind<IParamsReader>().To<OrderReader>().InSingletonScope();
-            container.Bind<MainWindowVM>().ToSelf();
+            container.Bind<DxfRedactor>().ToSelf().InSingletonScope();
             return container;
         }
     }

@@ -18,12 +18,11 @@ namespace ProjectZavod.ViewModels
     public class MainWindowVM
     {
         private DxfRedactor dxfRedactor;
-        private StandardKernel container;
-
-        public MainWindowVM(StandardKernel container)
+        private RootPaths rootPaths;
+        public MainWindowVM(DxfRedactor dxfRedactor, RootPaths rootPaths)
         {
-            dxfRedactor = new DxfRedactor(container);
-            this.container = container;
+            this.rootPaths = rootPaths;
+            this.dxfRedactor = dxfRedactor;
         }
 
         private ICommand _startProgrammButton;
@@ -41,7 +40,7 @@ namespace ProjectZavod.ViewModels
             get
             {
                 return _browseOrdersFolderButton ?? (_browseOrdersFolderButton = new CommandHandler(() =>
-                container.Get<RootPaths>().OrdersPath = BrowseFolder(), () => true));
+                rootPaths.OrdersPath = BrowseFolder(), () => true));
             }
         }
 
@@ -51,7 +50,7 @@ namespace ProjectZavod.ViewModels
             get
             {
                 return _browseResultsFolderButton ?? (_browseResultsFolderButton = new CommandHandler(() =>
-                container.Get<RootPaths>().ResultsPath = BrowseFolder(), () => true));
+                rootPaths.ResultsPath = BrowseFolder(), () => true));
             }
         }
 
@@ -71,7 +70,7 @@ namespace ProjectZavod.ViewModels
 
         public bool CanExecuteStart()
         {
-            return container.Get<RootPaths>().OrdersPath != null && container.Get<RootPaths>().ResultsPath != null;
+            return rootPaths.OrdersPath != null && rootPaths.ResultsPath != null;
         }
     }
 }

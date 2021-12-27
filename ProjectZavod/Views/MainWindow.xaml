@@ -7,90 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="294.324" Width="651.621"
         >
-    <!--x:Class="ProjectZavod.MainWindow"-->
-
     <Grid>
         <StackPanel>
-            <!--<TextBlock FontSize="15">Размер: Ширина, Высота</TextBlock>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <TextBox 
-                Width="100"
-                Height="25"
-                HorizontalAlignment="Left"
-                Text="{Binding Width}"
-                >
-                </TextBox>
-                <TextBox 
-                Width="100"
-                Height="25"
-                HorizontalAlignment="Left"
-                Margin ="105,0,0,0"
-                    Text="{Binding Height}"
-                >
-                </TextBox>
-            </Grid>
-
-            <TextBlock FontSize="15" Text="Тип двери:">
-            </TextBlock>
-
-            <ComboBox 
-                Text="Дверь"
-                Width="85" 
-                Height="22"
-                HorizontalAlignment="Left"
-                Margin="0,5,0,0"
-                ItemsSource="{Binding DoorModels}" 
-                SelectedValue="{Binding DoorType}"
-                />
-
-            <TextBlock FontSize="15" Text="Замок 1:   Замок 1:">
-            </TextBlock>
-
-            <Grid>
-                <ComboBox 
-                SelectedValuePath="ProjectZavod.OrderParams"
-                Text="Замок 1"
-                Width="85" 
-                Height="22"
-                HorizontalAlignment="Left"
-                Margin="0,5,0,0"
-                ItemsSource="{Binding KeyHoleModels}"
-                SelectedValue="{Binding KeyType1}"
-                />
-                
-                <ComboBox 
-                Text="Замок 2"
-                Width="85" 
-                Height="22"
-                HorizontalAlignment="Left"
-                Margin="90,5,0,0"
-                ItemsSource="{Binding KeyHoleModels}"
-                SelectedValue="{Binding KeyType2}"
-                />
-            </Grid>-->
-            <Grid>
-                <!--<Button             
-                x:Name="ModelsFolder" 
-                Command="{Binding BrowseModelsFolderButton}" 
-                HorizontalAlignment="Stretch"
-                Margin="41,10,641,-8"
-                VerticalAlignment="Top" 
-                Width="110"
-                Background="White"
-                BorderThickness="0"  
-                Height="85">
-                    <StackPanel HorizontalAlignment="Stretch" Width="104">
-                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
-                        <TextBlock HorizontalAlignment="Center" Text="Папка Шаблонов" FontSize="12" Margin="0,0,10,0"/>
-                </StackPanel>
-            </Button>-->
-
-            <Button              
+                <Button              
                 x:Name="BrowseResults" 
                 Command="{Binding BrowseResultsFolderButton}" 
                 HorizontalAlignment="Stretch"

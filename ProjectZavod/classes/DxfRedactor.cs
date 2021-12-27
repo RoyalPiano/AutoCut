@@ -4,6 +4,7 @@ using System.IO;
 using ProjectZavod.classes;
 using Ninject;
 using ProjectZavod.classes.DTOs;
+using ProjectZavod.Interfaces;
 
 namespace ProjectZavod.ViewModels
 {
@@ -12,14 +13,14 @@ namespace ProjectZavod.ViewModels
         private static readonly double deltaZ = 243;
         private static readonly string widthTemplate = "860";
         private static readonly string heightTemplate = "2050";
-        public DxfRedactor(StandardKernel container)
+        private readonly IParamsReader paramsReader;
+        public DxfRedactor(IParamsReader paramsReader, RootPaths paths)
         {
-            this.container = container;
-            paths = container.Get<RootPaths>();
+            this.paramsReader = paramsReader;
+            this.paths = paths;
         }
 
-        private readonly StandardKernel container;
-        private readonly RootPaths paths;
+        private RootPaths paths;
         public void CreateTransformedTemplates()
         {
             var ordersPath = paths.OrdersPath;
@@ -27,7 +28,7 @@ namespace ProjectZavod.ViewModels
             {
                 var orderFileInf = new FileInfo(orderPath);
                 Directory.CreateDirectory(Path.Combine(paths.ResultsPath, orderFileInf.Name));
-                var orderParams = container.Get<OrderReader>().ReadParams(orderPath);
+                var orderParams = paramsReader.ReadParams(orderPath);
                 var dxfDoorFiles = Directory.GetFiles(Path.Combine(paths.DoorModelsPath, orderParams.DoorType));
                 foreach (var file in dxfDoorFiles)
                 {
@@ -98,11 +99,10 @@ namespace ProjectZavod.ViewModels
         private FileInfo SetNewMeasurementsInFileName(FileInfo fileInfo, OrderParams orderParams)
         {
             var tempMeasure = fileInfo.Name;
-            if (tempMeasure.Contains(widthTemplate))
-                fileInfo = new FileInfo(fileInfo.Name.Replace(widthTemplate, $"{orderParams.Width}"));
-            else if (tempMeasure.Contains(heightTemplate))
+            if (tempMeasure.Contains(heightTemplate))
                 fileInfo = new FileInfo(fileInfo.FullName.Replace(heightTemplate, $"{orderParams.Height}"));
-            else fileInfo = new FileInfo(fileInfo.FullName.Replace($"{widthTemplate}x{heightTemplate}", $"{orderParams.Width}x{orderParams.Height}"));
+            if (tempMeasure.Contains(widthTemplate)) 
+                fileInfo = new FileInfo(fileInfo.Name.Replace(widthTemplate, $"{orderParams.Width}"));
             return fileInfo;
         }
 
