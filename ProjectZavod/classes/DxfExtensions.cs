@@ -57,7 +57,7 @@ namespace ProjectZavod.ViewModels
                     listEntites.Add(entity.ShiftEntityPosition(deltaVector));
                 }
             }
-            return ourModel.AddEntitiesToDxf(listEntites); // тут может быть ошибка?
+            return ourModel.AddEntitiesToDxf(listEntites); 
         }
 
         private static EntityObject ShiftEntityPosition(this EntityObject entity, Vector3 deltaVector)
@@ -96,13 +96,11 @@ namespace ProjectZavod.ViewModels
             if (ourFile == null)
             {
                 MessageBox.Show($"{ourFile} File is not loaded, incorrect format");
-                //throw new Exception(ourFile + " File is not loaded, incorrect format");
             }
 
             DxfVersion dxfVersion = DxfDocument.CheckDxfFileVersion(filePath, out _);
             if (dxfVersion < DxfVersion.AutoCad2000)
                 MessageBox.Show($"you are using an old AutoCad Version, may be mistakes in result file. Please, update DxfVersion of file {filePath}");
-            //throw new Exception("you are using an old AutoCad Version");
         }
     }
 }
