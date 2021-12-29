@@ -27,15 +27,19 @@ namespace ProjectZavod.ViewModels
             foreach (var orderPath in Directory.GetFiles(ordersPath))
             {
                 var orderFileInf = new FileInfo(orderPath);
+                if (orderFileInf.Extension != ".xls" && orderFileInf.Extension != ".xlsx")
+                    continue;
                 Directory.CreateDirectory(Path.Combine(paths.ResultsPath, orderFileInf.Name));
-                var orderParams = paramsReader.ReadParams(orderPath);
+                var orderParams = paramsReader.ReadParams(orderFileInf);
                 var dxfDoorFiles = Directory.GetFiles(Path.Combine(paths.DoorModelsPath, orderParams.DoorType));
                 foreach (var file in dxfDoorFiles)
                 {
+                    var dxfFileInf = new FileInfo(file);
+                    if (dxfFileInf.Extension != ".dxf")
+                        continue;
                     var dxfFile = DxfDocument.Load(file);
                     dxfFile.CheckLoadError(file);
                     dxfFile = dxfFile.ChangeSize(orderParams.Width, orderParams.Height);
-                    var dxfFileInf = new FileInfo(file);
                     dxfFileInf = SetNewMeasurementsInFileName(dxfFileInf, orderParams);
                     var dxfFileDTO = new DxfFileDTO(dxfFile, dxfFileInf);
 

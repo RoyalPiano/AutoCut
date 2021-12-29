@@ -4,6 +4,7 @@ using ProjectZavod.Interfaces;
 using ProjectZavod.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,13 @@ namespace ProjectZavod.classes
 {
     public class OrderReader : IParamsReader
     {
-        public OrderParams ReadParams(string file)
+        public OrderParams ReadParams(FileInfo file)
         {
+            if (file.Extension != ".xls" && file.Extension != ".xlsx")
+                return null;
+
             Application excel = new Application();
-            Workbook wb = excel.Workbooks.Open(file);
+            Workbook wb = excel.Workbooks.Open(file.FullName);
             Worksheet excelSheet = wb.ActiveSheet;
             double height = excelSheet.Cells[11, "E"].Value;
             double width = excelSheet.Cells[16, "C"].Value;
