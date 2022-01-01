@@ -15,6 +15,8 @@ namespace ProjectZavod.ViewModels
     {
         const int constWidth = 860;
         const int constHeight = 2050;
+        const int topElementColor = 255;
+        const int bottomElementColor = 254;
 
         public static DxfDocument ChangeSize(this DxfDocument ourFile, double needWidth, double needHeight)
         {
@@ -22,12 +24,12 @@ namespace ProjectZavod.ViewModels
             double newHeigh = needHeight - constHeight;
             foreach (var x in ourFile.Lines)
             {
-                LineChangeSize(x, new Vector3(newWidth, 0, 0), x.Color.G == 255, x.Color.B == 255);
-                LineChangeSize(x, new Vector3(0, newHeigh, 0), x.Color.R == 255, x.Color.R == 254);
+                LineChangeSize(x, new Vector3(newWidth, 0, 0), x.Color.G == topElementColor, x.Color.B == topElementColor);
+                LineChangeSize(x, new Vector3(0, newHeigh, 0), x.Color.R == topElementColor, x.Color.R == bottomElementColor);
             }
             foreach (var x in ourFile.Circles)
             {
-                if (x.Color.B == 255)
+                if (x.Color.B == topElementColor)
                     x.Center += new Vector3(newWidth, 0, 0);
             }
             return ourFile;

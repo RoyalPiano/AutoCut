@@ -21,14 +21,20 @@ namespace ProjectZavod.classes
             Application excel = new Application();
             Workbook wb = excel.Workbooks.Open(file.FullName);
             Worksheet excelSheet = wb.ActiveSheet;
-            double height = excelSheet.Cells[11, "E"].Value;
-            double width = excelSheet.Cells[16, "C"].Value;
-            KeyLock keyType1 = new KeyLock(excelSheet.Cells[30, "G"].Value.ToString());
-            KeyLock keyType2 = new KeyLock(excelSheet.Cells[32, "G"].Value.ToString());
-            string doorType = excelSheet.Cells[20, "G"].Value.ToString().Replace("/", "");
-            int latchSum = int.Parse(excelSheet.Cells[35, "G"].Value.ToString().Substring(0, 1));
+            double? height = excelSheet.Cells[11, "E"].Value;
+            double? width = excelSheet.Cells[16, "C"].Value;
+            var keyType1 = excelSheet.Cells[30, "G"].Value;
+            var keyType2 = excelSheet.Cells[32, "G"].Value;
+            var doorType = excelSheet.Cells[20, "G"].Value;
+            var latchSum = excelSheet.Cells[35, "G"].Value;
             wb.Close();
-            var orderParams = new OrderParams(height, width, keyType1, keyType2, doorType, latchSum);
+            if (height == null || width == null || keyType1 == null || keyType2 == null || doorType == null || latchSum == null)
+                return null;
+            latchSum = int.Parse(latchSum.ToString().Substring(0, 1));
+            doorType = doorType.ToString().Replace("/", "");
+            KeyLock keyLock1 = new KeyLock(keyType1);
+            KeyLock keyLock2 = new KeyLock(keyType2);
+            var orderParams = new OrderParams(height.Value, width.Value, keyLock1, keyLock2, doorType, latchSum);
             return orderParams;
         }
     }

@@ -27,10 +27,10 @@ namespace ProjectZavod.ViewModels
             foreach (var orderPath in Directory.GetFiles(ordersPath))
             {
                 var orderFileInf = new FileInfo(orderPath);
-                if (orderFileInf.Extension != ".xls" && orderFileInf.Extension != ".xlsx")
+                var orderParams = paramsReader.ReadParams(orderFileInf);
+                if (orderParams == null)
                     continue;
                 Directory.CreateDirectory(Path.Combine(paths.ResultsPath, orderFileInf.Name));
-                var orderParams = paramsReader.ReadParams(orderFileInf);
                 var dxfDoorFiles = Directory.GetFiles(Path.Combine(paths.DoorModelsPath, orderParams.DoorType));
                 foreach (var file in dxfDoorFiles)
                 {
