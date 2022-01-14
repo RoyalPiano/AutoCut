@@ -5,53 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod"
         mc:Ignorable="d"
-        Title="MainWindow" Height="294.324" Width="651.621"
+        Title="MainWindow" MinHeight="310" MinWidth="651.621" Height="400" Width="750"
         >
     <Grid>
-        <StackPanel>
-            <Grid>
-                <Button              
-                x:Name="BrowseResults" 
-                Command="{Binding BrowseResultsFolderButton}" 
-                HorizontalAlignment="Stretch"
-                Margin="353,10,181,-8"
-                VerticalAlignment="Top" 
-                Width="110"
-                Background="White"
-                BorderThickness="0"  
-                Height="85">
-                    <StackPanel HorizontalAlignment="Stretch" Width="104">
-                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
-                        <TextBlock HorizontalAlignment="Center" Text="Папка отгрузки" FontSize="12" Margin="0,0,10,0"/>
-                    </StackPanel>
-                </Button>
-
+        <Grid>
             <Button             
-                x:Name="BrowseOrders" 
+                x:Name="BrowseOrders"
+                Height="120"
+                Width="135"
                 Command="{Binding BrowseOrdersFolderButton}" 
-                HorizontalAlignment="Stretch"
-                Margin="123,10,411,-8"
-                VerticalAlignment="Top" 
-                Width="110"
+                Margin="118,36,362,113"
                 Background="White"
                 BorderThickness="0"  
-                Height="85">
-                    <StackPanel HorizontalAlignment="Stretch" Width="104">
-                        <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Margin="0,0,10,0" Height="68"/>
-                        <TextBlock HorizontalAlignment="Center" Text="Папка Заказов" FontSize="12" Margin="0,0,10,0"/>
-                    </StackPanel>
-                </Button>
-            </Grid>
+                >
+                <StackPanel Height="120" Width="130">
+                    <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Height="98" Width="130"/>
+                    <TextBlock HorizontalAlignment="Center" Text="Папка Заказов" FontSize="16" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
             <Button             
+                x:Name="BrowseResults"
+                Height="120"
+                Width="135"
+                Command="{Binding BrowseResultsFolderButton}" 
+                Margin="362,36,118,113"
+                Background="White"
+                BorderThickness="0"  
+                >
+                <StackPanel Height="120" Width="130">
+                    <Image HorizontalAlignment="Center" Source="/templates/icons/folderIcon.png" Height="98" Width="130"/>
+                    <TextBlock HorizontalAlignment="Center" Text="Папка отгрузки" FontSize="16" Margin="0,0,5,0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Button             
                 x:Name="StartButton" 
                 Command="{Binding StartProgrammButton}" 
                 HorizontalAlignment="Right"
-                Margin="0,125,0,1"                
-                
-                Width="90"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,1"                                
+                Width="146"
                 Background="White"
                 Content="Start"
-                Height="42"/>
-        </StackPanel>
+                FontSize="25"
+                BorderThickness="2"
+                BorderBrush="LawnGreen"
+                Height="72"/>
     </Grid>
 </Window>
