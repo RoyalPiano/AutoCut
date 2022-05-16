@@ -1,0 +1,41 @@
+﻿<Window x:Class="ProjectZavod.Views.doorViewRedactor.ComboBoxInit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ViewRedactor" Height="450" Width="800">
+
+    <Grid>
+        <StackPanel
+            Orientation="Vertical">
+
+            <StackPanel
+            Orientation="Horizontal">
+
+                <TextBlock Text="Введите название для параметра (Например: Толщина стали):" VerticalAlignment="Top"/>
+                <TextBox VerticalAlignment="Top" Width="400" Margin="10,0,0,0" Text="{Binding NewParamName}"/>
+
+            </StackPanel>
+
+            <StackPanel
+            Orientation="Horizontal">
+
+                <TextBlock Text="Введите через знак ',' все возможные варианты выбора для этого параметра:" VerticalAlignment="Top"/>
+                <TextBox VerticalAlignment="Top" Width="350" Height="100" Margin="10,0,0,0" Text="{Binding InputValues}"/>
+
+            </StackPanel>
+
+            <Button
+                Content="Создать"
+                Width="80"
+                FontSize="20"
+                Command="{Binding SaveParam}"/>
+
+
+        </StackPanel>
+
+    </Grid>
+    
+</Window>
+

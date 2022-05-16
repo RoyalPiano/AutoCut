@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectZavod.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectZavod.Views
+namespace ProjectZavod.Views.doorViewRedactor
 {
-    public partial class CreationWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для ViewRedactor.xaml
+    /// </summary>
+    public partial class ComboBoxInit : Window
     {
-        public CreationWindow()
+        public ComboBoxInit()
         {
             InitializeComponent();
+            DataContext = new ComboBoxInitVM();
         }
     }
 }
