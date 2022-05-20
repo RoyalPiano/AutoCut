@@ -41,6 +41,29 @@
 
                     </StackPanel>
 
+                    <StackPanel
+                        Orientation="Vertical"
+                        Width="250">
+
+                        <TextBox Height="30"/>
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Orientation="Vertical"
+                        Width="250">
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <StackPanel
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right">
+
+                    <Button Content="Создать" Height="30" Width="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding SaveOrderBtn}"/>
+                    <Button Content="Добавить параметр" Height="30" Width="120" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding AddOrderParam}"/>
+
                 </StackPanel>
 
             </Grid>

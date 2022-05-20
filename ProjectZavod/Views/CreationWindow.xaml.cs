@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectZavod.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace ProjectZavod.Views
         public CreationWindow()
         {
             InitializeComponent();
+            DataContext = new CreationVM(this.gridOrders);
         }
     }
 }

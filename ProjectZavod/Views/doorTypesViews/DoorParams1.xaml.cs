@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectZavod.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace ProjectZavod.Views.doorTypesViews
             var cb = new ComboBox();
             cb.ItemsSource = new List<string>() { "sdf", "sdfdf" };
             sp.Children.Insert(0, cb);
+            DataContext = new DoorParamsVM();
         }
     }
 }
