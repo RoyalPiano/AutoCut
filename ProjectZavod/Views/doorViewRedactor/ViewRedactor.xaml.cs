@@ -25,6 +25,18 @@ namespace ProjectZavod.Views.doorViewRedactor
         {
             InitializeComponent();
             DataContext = new ViewRedactorVM();
+            Loaded += ViewRedactor_Loaded;
+        }
+
+        private void ViewRedactor_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ICloseWindow vm)
+            {
+                vm.Close += () =>
+                {
+                    this.Close();
+                };
+            }
         }
     }
 }

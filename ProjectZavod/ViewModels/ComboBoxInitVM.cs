@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace ProjectZavod.ViewModels
 {
-    public class ComboBoxInitVM
+    public class ComboBoxInitVM : ICloseWindow
     {
         public string InputValues { get; set; }
         public string NewParamName { get; set; }
@@ -23,9 +23,12 @@ namespace ProjectZavod.ViewModels
             }
         }
 
+        public Action Close { get; set; }
+
         private void CreateParam()
         {
-            new DoorParams1().Show();
+            Close?.Invoke();
+            new DoorParams1().UpdateLayout();
         }
     }
 }

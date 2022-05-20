@@ -28,6 +28,18 @@ namespace ProjectZavod.Views.doorTypesViews
             cb.ItemsSource = new List<string>() { "sdf", "sdfdf" };
             sp.Children.Insert(0, cb);
             DataContext = new DoorParamsVM();
+            Loaded += DoorParams1_Loaded;
+        }
+
+        private void DoorParams1_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is ICloseWindow vm)
+            {
+                vm.Close += () =>
+                {
+                    this.Close();
+                };
+            }
         }
     }
 }

@@ -217,6 +217,7 @@
     <Compile Include="ViewModels\ComboBoxInitVM.cs" />
     <Compile Include="ViewModels\CreationVM.cs" />
     <Compile Include="ViewModels\DoorParamsVM.cs" />
+    <Compile Include="ViewModels\ICloseWindow.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="classes\OrderParams.cs" />
     <Compile Include="classes\DxfRedactor.cs" />

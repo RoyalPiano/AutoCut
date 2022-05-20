@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace ProjectZavod.ViewModels
 {
-    public class ViewRedactorVM
+    public class ViewRedactorVM : ICloseWindow
     {
         private ComboBox comboBox { get; set; }
         private TextBox textBox { get; set; }
@@ -34,8 +34,11 @@ namespace ProjectZavod.ViewModels
             }
         }
 
+        public Action Close { get; set; }
+
         private void Open_cb_window()
         {
+            Close?.Invoke();
             comboBox = new ComboBox();
             new ComboBoxInit().Show();
         }

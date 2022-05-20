@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace ProjectZavod.ViewModels
 {
-    public class DoorParamsVM
+    public class DoorParamsVM : ICloseWindow
     {
         public DoorParamsVM()
         {
@@ -37,15 +37,17 @@ namespace ProjectZavod.ViewModels
             }
         }
 
+        public Action Close { get; set; }
+
         private void SaveOrder()
         {
+            Close?.Invoke();
             new DoorParams1().Close();
-            new CreationWindow().Show();
         }
 
         private void AddParams()
         {
-            new ViewRedactor().Show();
+            new ViewRedactor().ShowDialog();
         }
     }
 }
