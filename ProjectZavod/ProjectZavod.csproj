@@ -165,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\doorTypesViews\MainDoorParams.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\doorTypesViews\DoorParams1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,6 +222,7 @@
     <Compile Include="ViewModels\CreationVM.cs" />
     <Compile Include="ViewModels\DoorParamsVM.cs" />
     <Compile Include="ViewModels\ICloseWindow.cs" />
+    <Compile Include="ViewModels\MainDoorParamsVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="classes\OrderParams.cs" />
     <Compile Include="classes\DxfRedactor.cs" />
@@ -225,6 +230,9 @@
     <Compile Include="ViewModels\ViewRedactorVM.cs" />
     <Compile Include="Views\CreationWindow.xaml.cs">
       <DependentUpon>CreationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\doorTypesViews\MainDoorParams.xaml.cs">
+      <DependentUpon>MainDoorParams.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\doorTypesViews\DoorParams1.xaml.cs">
       <DependentUpon>DoorParams1.xaml</DependentUpon>

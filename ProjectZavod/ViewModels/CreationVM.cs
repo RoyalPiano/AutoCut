@@ -32,7 +32,7 @@ namespace ProjectZavod.ViewModels
 
         private void OpenDoorType1Window()
         {
-            new DoorParams1().ShowDialog();
+            new MainDoorParams().ShowDialog();
         }
     }
 }
