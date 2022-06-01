@@ -4,22 +4,51 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ordersDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ordersDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="order number" Type="varchar" MaxLength="50" />
-          <Property Name="number dd" Type="varchar" MaxLength="50" />
-          <Property Name="client" Type="varchar" MaxLength="100" />
-          <Property Name="date" Type="varchar" MaxLength="50" />
+          <Property Name="Leaf" Type="text" />
+          <Property Name="SteelThickness" Type="float" />
+          <Property Name="DoorWidth" Type="float" />
+          <Property Name="DoorHeight" Type="float" />
+          <Property Name="DoorOpeningType" Type="text" />
+          <Property Name="SashWidth" Type="float" />
+          <Property Name="SashHeight" Type="float" />
+          <Property Name="JambRight" Type="bit" />
+          <Property Name="JambLeft" Type="bit" />
+          <Property Name="JambUp" Type="bit" />
+          <Property Name="PolymerCoating" Type="text" />
+          <Property Name="Lock1" Type="text" />
+          <Property Name="Сylinder1" Type="text" />
+          <Property Name="Lock2" Type="text" />
+          <Property Name="Сylinder2" Type="text" />
+          <Property Name="Handle" Type="text" />
+          <Property Name="HardwareColor" Type="text" />
+          <Property Name="LatchesCount" Type="int" />
+          <Property Name="VibroplastFilling" Type="bit" />
+          <Property Name="CottonFilling" Type="bit" />
+          <Property Name="PenoplexFilling" Type="bit" />
+          <Property Name="Peephole" Type="text" />
+          <Property Name="InteriorDecoration" Type="text" />
+          <Property Name="Color" Type="text" />
+          <Property Name="Payment" Type="nchar" MaxLength="10" />
+          <Property Name="OnWorkingSide" Type="bit" />
+          <Property Name="OnSecondSide" Type="bit" />
+          <Property Name="MufflePart" Type="bit" />
+          <Property Name="Side" Type="text" />
+          <Property Name="SlopeCorner" Type="text" />
+          <Property Name="Сomments" Type="text" />
+          <Property Name="Customer" Type="varchar(max)" />
+          <Property Name="OrderNumber" Type="text" />
+          <Property Name="NumberDD" Type="text" />
         </EntityType>
         <EntityContainer Name="Хранилище ordersDBModelContainer">
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ordersDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -28,10 +57,40 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="order_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="number_dd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="client" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Leaf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SteelThickness" Type="Double" />
+          <Property Name="DoorWidth" Type="Double" />
+          <Property Name="DoorHeight" Type="Double" />
+          <Property Name="DoorOpeningType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SashWidth" Type="Double" />
+          <Property Name="SashHeight" Type="Double" />
+          <Property Name="JambRight" Type="Boolean" />
+          <Property Name="JambLeft" Type="Boolean" />
+          <Property Name="JambUp" Type="Boolean" />
+          <Property Name="PolymerCoating" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Lock1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Сylinder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Lock2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Сylinder2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Handle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HardwareColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LatchesCount" Type="Int32" />
+          <Property Name="VibroplastFilling" Type="Boolean" />
+          <Property Name="CottonFilling" Type="Boolean" />
+          <Property Name="PenoplexFilling" Type="Boolean" />
+          <Property Name="Peephole" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InteriorDecoration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Payment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OnWorkingSide" Type="Boolean" />
+          <Property Name="OnSecondSide" Type="Boolean" />
+          <Property Name="MufflePart" Type="Boolean" />
+          <Property Name="Side" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SlopeCorner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Сomments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrderNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumberDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="ordersDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />
@@ -45,12 +104,42 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ordersDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="NumberDD" ColumnName="NumberDD" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Сomments" ColumnName="Сomments" />
+                <ScalarProperty Name="SlopeCorner" ColumnName="SlopeCorner" />
+                <ScalarProperty Name="Side" ColumnName="Side" />
+                <ScalarProperty Name="MufflePart" ColumnName="MufflePart" />
+                <ScalarProperty Name="OnSecondSide" ColumnName="OnSecondSide" />
+                <ScalarProperty Name="OnWorkingSide" ColumnName="OnWorkingSide" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="InteriorDecoration" ColumnName="InteriorDecoration" />
+                <ScalarProperty Name="Peephole" ColumnName="Peephole" />
+                <ScalarProperty Name="PenoplexFilling" ColumnName="PenoplexFilling" />
+                <ScalarProperty Name="CottonFilling" ColumnName="CottonFilling" />
+                <ScalarProperty Name="VibroplastFilling" ColumnName="VibroplastFilling" />
+                <ScalarProperty Name="LatchesCount" ColumnName="LatchesCount" />
+                <ScalarProperty Name="HardwareColor" ColumnName="HardwareColor" />
+                <ScalarProperty Name="Handle" ColumnName="Handle" />
+                <ScalarProperty Name="Сylinder2" ColumnName="Сylinder2" />
+                <ScalarProperty Name="Lock2" ColumnName="Lock2" />
+                <ScalarProperty Name="Сylinder1" ColumnName="Сylinder1" />
+                <ScalarProperty Name="Lock1" ColumnName="Lock1" />
+                <ScalarProperty Name="PolymerCoating" ColumnName="PolymerCoating" />
+                <ScalarProperty Name="JambUp" ColumnName="JambUp" />
+                <ScalarProperty Name="JambLeft" ColumnName="JambLeft" />
+                <ScalarProperty Name="JambRight" ColumnName="JambRight" />
+                <ScalarProperty Name="SashHeight" ColumnName="SashHeight" />
+                <ScalarProperty Name="SashWidth" ColumnName="SashWidth" />
+                <ScalarProperty Name="DoorOpeningType" ColumnName="DoorOpeningType" />
+                <ScalarProperty Name="DoorHeight" ColumnName="DoorHeight" />
+                <ScalarProperty Name="DoorWidth" ColumnName="DoorWidth" />
+                <ScalarProperty Name="SteelThickness" ColumnName="SteelThickness" />
+                <ScalarProperty Name="Leaf" ColumnName="Leaf" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="order_number" ColumnName="order number" />
-                <ScalarProperty Name="number_dd" ColumnName="number dd" />
-                <ScalarProperty Name="client" ColumnName="client" />
-                <ScalarProperty Name="date" ColumnName="date" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>

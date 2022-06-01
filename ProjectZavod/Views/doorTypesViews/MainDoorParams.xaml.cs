@@ -1,4 +1,6 @@
-﻿using ProjectZavod.ViewModels;
+﻿using Ninject;
+using ProjectZavod.Data.orderDBModel;
+using ProjectZavod.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +26,10 @@ namespace ProjectZavod.Views.doorTypesViews
         {
             InitializeComponent();
             DataContext = new MainDoorParamsVM();
-            Loaded += DoorParams1_Loaded;
+            Loaded += DoorParams_Loaded;
         }
 
-        private void DoorParams1_Loaded(object sender, RoutedEventArgs e)
+        private void DoorParams_Loaded(object sender, RoutedEventArgs e)
         {
             if(DataContext is ICloseWindow vm)
             {

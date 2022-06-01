@@ -169,10 +169,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\doorTypesViews\DoorParams1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\doorViewRedactor\ComboBoxInit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -192,7 +188,6 @@
     <Compile Include="classes\DTOs\DxfFileDTO.cs" />
     <Compile Include="classes\OrderDetails.cs" />
     <Compile Include="classes\OrderReader.cs" />
-    <Compile Include="Data\DBContent.cs" />
     <Compile Include="Data\orderDBModel\Order.cs">
       <DependentUpon>orderModel.tt</DependentUpon>
     </Compile>
@@ -220,7 +215,6 @@
     <Compile Include="classes\DxfExtensions.cs" />
     <Compile Include="ViewModels\ComboBoxInitVM.cs" />
     <Compile Include="ViewModels\CreationVM.cs" />
-    <Compile Include="ViewModels\DoorParamsVM.cs" />
     <Compile Include="ViewModels\ICloseWindow.cs" />
     <Compile Include="ViewModels\MainDoorParamsVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
@@ -233,9 +227,6 @@
     </Compile>
     <Compile Include="Views\doorTypesViews\MainDoorParams.xaml.cs">
       <DependentUpon>MainDoorParams.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\doorTypesViews\DoorParams1.xaml.cs">
-      <DependentUpon>DoorParams1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\doorViewRedactor\ComboBoxInit.xaml.cs">
       <DependentUpon>ComboBoxInit.xaml</DependentUpon>
@@ -286,6 +277,7 @@
     <Resource Include="templates\icons\folderIcon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="templates\Doors\" />
     <Folder Include="templates\KeyHoles\" />
     <Folder Include="templates\Latches\" />

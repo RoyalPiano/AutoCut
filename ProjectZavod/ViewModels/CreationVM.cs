@@ -1,23 +1,37 @@
 ﻿using ProjectZavod.Data.orderDBModel;
+using ProjectZavod.Views;
 using ProjectZavod.Views.doorTypesViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ProjectZavod.ViewModels
 {
-    public class CreationVM
+    public class CreationVM : ICloseWindow
     {
-        public DataGrid DataGrid { get; set; }
-        ordersDBEntities db = new ordersDBEntities();
+        public Action Close { get; set; }
+        private ordersDBEntities db;
         public CreationVM(DataGrid dataGrid)
         {
-            DataGrid = dataGrid;
-            DataGrid.ItemsSource = db.Order.Select(w => new { w.order_number, w.number_dd, w.client, w.date }).ToList();
+            db = new ordersDBEntities();
+            var a = db.Order.Select(w => w.Customer).ToList();
+            var list = db.Order.Select(w => new
+            {
+                Номер = w.OrderNumber,
+                ДД = w.NumberDD,
+                Заказчик = w.Customer
+            }).ToList();
+            dataGrid.ItemsSource = null;
+
+            dataGrid.ItemsSource = list.ToList();
+            dataGrid.UpdateLayout();
+            dataGrid.Items.Refresh();
+            dataGrid.UpdateLayout();
         }
 
         private ICommand _createDoorType1;
@@ -32,7 +46,8 @@ namespace ProjectZavod.ViewModels
 
         private void OpenDoorType1Window()
         {
-            new MainDoorParams().ShowDialog();
+            new MainDoorParams().Show();
+            Close?.Invoke();
         }
     }
 }

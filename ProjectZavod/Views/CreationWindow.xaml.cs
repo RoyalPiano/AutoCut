@@ -1,4 +1,6 @@
-﻿using ProjectZavod.ViewModels;
+﻿using Ninject;
+using ProjectZavod.Data.orderDBModel;
+using ProjectZavod.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,18 @@ namespace ProjectZavod.Views
         {
             InitializeComponent();
             DataContext = new CreationVM(this.gridOrders);
+            Loaded += CreationWindow_Loaded;
+        }
+
+        private void CreationWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ICloseWindow vm)
+            {
+                vm.Close += () =>
+                {
+                    this.Close();
+                };
+            }
         }
     }
 }

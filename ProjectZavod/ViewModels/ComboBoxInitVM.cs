@@ -28,7 +28,7 @@ namespace ProjectZavod.ViewModels
         private void CreateParam()
         {
             Close?.Invoke();
-            new DoorParams1().UpdateLayout();
+            new MainDoorParams().UpdateLayout();
         }
     }
 }
