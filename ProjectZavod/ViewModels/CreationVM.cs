@@ -3,6 +3,7 @@ using ProjectZavod.Views;
 using ProjectZavod.Views.doorTypesViews;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace ProjectZavod.ViewModels
     {
         public Action Close { get; set; }
         private ordersDBEntities db;
+        private DataGrid dataGrid;
         public CreationVM(DataGrid dataGrid)
         {
+            this.dataGrid = dataGrid;
             db = new ordersDBEntities();
             var a = db.Order.Select(w => w.Customer).ToList();
             var list = db.Order.Select(w => new
@@ -43,6 +46,24 @@ namespace ProjectZavod.ViewModels
                 OpenDoorType1Window(), () => true));
             }
         }
+
+        private ICommand deleteOrder;
+        public ICommand DeleteOrder
+        {
+            get
+            {
+                return deleteOrder ?? (deleteOrder = new CommandHandler(() =>
+                Delete(SelectedOrder), () => true));
+            }
+        }
+
+        private void Delete(object selectedIndex)
+        {
+            //var order = db.Order.First(w => w.OrderNumber == SelectedOrder.Номер);
+            db.Order.Remove(order);
+        }
+
+        public object SelectedOrder { get; set; }
 
         private void OpenDoorType1Window()
         {

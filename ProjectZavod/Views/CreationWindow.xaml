@@ -101,7 +101,7 @@
                     Background="White"
                     Height="190">
 
-                <DataGrid x:Name="gridOrders"/>
+                <DataGrid x:Name="gridOrders" SelectedIndex="{Binding SelectedIndex}" SelectedItem="{Binding SelectedOrder}"/>
             </ScrollViewer>
 
             <StackPanel
@@ -110,7 +110,8 @@
 
                 <Button
                         Width="120"
-                        Content="Удалить"/>
+                        Content="Удалить"
+                    Command="{Binding DeleteOrder}"/>
                 <Button
                         Width="120"
                         Content="Cмотреть/Изменить"/>
