@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod.Views.doorTypesViews" xmlns:local1="clr-namespace:ProjectZavod.ViewModels"
         mc:Ignorable="d"
-        Title="Подъездные" Height="800" Width="1200">
+        Title="Подъездные" Height="500" Width="1200">
 
     <Window.DataContext>
         <local1:MainDoorParamsVM/>

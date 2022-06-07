@@ -22,9 +22,9 @@ namespace ProjectZavod.Data.orderDBModel
         public string DoorOpeningType { get; set; }
         public Nullable<double> SashWidth { get; set; }
         public Nullable<double> SashHeight { get; set; }
-        public Nullable<bool> JambRight { get; set; }
-        public Nullable<bool> JambLeft { get; set; }
-        public Nullable<bool> JambUp { get; set; }
+        public bool JambRight { get; set; }
+        public bool JambLeft { get; set; }
+        public bool JambUp { get; set; }
         public string PolymerCoating { get; set; }
         public string Lock1 { get; set; }
         public string Сylinder1 { get; set; }
@@ -33,16 +33,16 @@ namespace ProjectZavod.Data.orderDBModel
         public string Handle { get; set; }
         public string HardwareColor { get; set; }
         public Nullable<int> LatchesCount { get; set; }
-        public Nullable<bool> VibroplastFilling { get; set; }
-        public Nullable<bool> CottonFilling { get; set; }
-        public Nullable<bool> PenoplexFilling { get; set; }
+        public bool VibroplastFilling { get; set; }
+        public bool CottonFilling { get; set; }
+        public bool PenoplexFilling { get; set; }
         public string Peephole { get; set; }
         public string InteriorDecoration { get; set; }
         public string Color { get; set; }
         public string Payment { get; set; }
-        public Nullable<bool> OnWorkingSide { get; set; }
-        public Nullable<bool> OnSecondSide { get; set; }
-        public Nullable<bool> MufflePart { get; set; }
+        public bool OnWorkingSide { get; set; }
+        public bool OnSecondSide { get; set; }
+        public bool MufflePart { get; set; }
         public string Side { get; set; }
         public string SlopeCorner { get; set; }
         public string Сomments { get; set; }

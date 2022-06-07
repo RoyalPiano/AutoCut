@@ -10,40 +10,40 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Leaf" Type="text" />
+          <Property Name="Leaf" Type="nvarchar(max)" />
           <Property Name="SteelThickness" Type="float" />
           <Property Name="DoorWidth" Type="float" />
           <Property Name="DoorHeight" Type="float" />
-          <Property Name="DoorOpeningType" Type="text" />
+          <Property Name="DoorOpeningType" Type="nvarchar(max)" />
           <Property Name="SashWidth" Type="float" />
           <Property Name="SashHeight" Type="float" />
-          <Property Name="JambRight" Type="bit" />
-          <Property Name="JambLeft" Type="bit" />
-          <Property Name="JambUp" Type="bit" />
-          <Property Name="PolymerCoating" Type="text" />
-          <Property Name="Lock1" Type="text" />
-          <Property Name="Сylinder1" Type="text" />
-          <Property Name="Lock2" Type="text" />
-          <Property Name="Сylinder2" Type="text" />
-          <Property Name="Handle" Type="text" />
-          <Property Name="HardwareColor" Type="text" />
+          <Property Name="JambRight" Type="bit" Nullable="false" />
+          <Property Name="JambLeft" Type="bit" Nullable="false" />
+          <Property Name="JambUp" Type="bit" Nullable="false" />
+          <Property Name="PolymerCoating" Type="nvarchar(max)" />
+          <Property Name="Lock1" Type="nvarchar(max)" />
+          <Property Name="Сylinder1" Type="nvarchar(max)" />
+          <Property Name="Lock2" Type="nvarchar(max)" />
+          <Property Name="Сylinder2" Type="nvarchar(max)" />
+          <Property Name="Handle" Type="nvarchar(max)" />
+          <Property Name="HardwareColor" Type="nvarchar(max)" />
           <Property Name="LatchesCount" Type="int" />
-          <Property Name="VibroplastFilling" Type="bit" />
-          <Property Name="CottonFilling" Type="bit" />
-          <Property Name="PenoplexFilling" Type="bit" />
-          <Property Name="Peephole" Type="text" />
-          <Property Name="InteriorDecoration" Type="text" />
-          <Property Name="Color" Type="text" />
+          <Property Name="VibroplastFilling" Type="bit" Nullable="false" />
+          <Property Name="CottonFilling" Type="bit" Nullable="false" />
+          <Property Name="PenoplexFilling" Type="bit" Nullable="false" />
+          <Property Name="Peephole" Type="nvarchar(max)" />
+          <Property Name="InteriorDecoration" Type="nvarchar(max)" />
+          <Property Name="Color" Type="nvarchar(max)" />
           <Property Name="Payment" Type="nchar" MaxLength="10" />
-          <Property Name="OnWorkingSide" Type="bit" />
-          <Property Name="OnSecondSide" Type="bit" />
-          <Property Name="MufflePart" Type="bit" />
-          <Property Name="Side" Type="text" />
-          <Property Name="SlopeCorner" Type="text" />
-          <Property Name="Сomments" Type="text" />
-          <Property Name="Customer" Type="varchar(max)" />
-          <Property Name="OrderNumber" Type="text" />
-          <Property Name="NumberDD" Type="text" />
+          <Property Name="OnWorkingSide" Type="bit" Nullable="false" />
+          <Property Name="OnSecondSide" Type="bit" Nullable="false" />
+          <Property Name="MufflePart" Type="bit" Nullable="false" />
+          <Property Name="Side" Type="nvarchar(max)" />
+          <Property Name="SlopeCorner" Type="nvarchar(max)" />
+          <Property Name="Сomments" Type="nvarchar(max)" />
+          <Property Name="Customer" Type="nvarchar(max)" />
+          <Property Name="OrderNumber" Type="nvarchar(max)" />
+          <Property Name="NumberDD" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="Хранилище ordersDBModelContainer">
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
@@ -57,40 +57,40 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Leaf" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Leaf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SteelThickness" Type="Double" />
           <Property Name="DoorWidth" Type="Double" />
           <Property Name="DoorHeight" Type="Double" />
-          <Property Name="DoorOpeningType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DoorOpeningType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SashWidth" Type="Double" />
           <Property Name="SashHeight" Type="Double" />
-          <Property Name="JambRight" Type="Boolean" />
-          <Property Name="JambLeft" Type="Boolean" />
-          <Property Name="JambUp" Type="Boolean" />
-          <Property Name="PolymerCoating" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Lock1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Сylinder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Lock2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Сylinder2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Handle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="HardwareColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="JambRight" Type="Boolean" Nullable="false" />
+          <Property Name="JambLeft" Type="Boolean" Nullable="false" />
+          <Property Name="JambUp" Type="Boolean" Nullable="false" />
+          <Property Name="PolymerCoating" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lock1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сylinder1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lock2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сylinder2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Handle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HardwareColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LatchesCount" Type="Int32" />
-          <Property Name="VibroplastFilling" Type="Boolean" />
-          <Property Name="CottonFilling" Type="Boolean" />
-          <Property Name="PenoplexFilling" Type="Boolean" />
-          <Property Name="Peephole" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="InteriorDecoration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VibroplastFilling" Type="Boolean" Nullable="false" />
+          <Property Name="CottonFilling" Type="Boolean" Nullable="false" />
+          <Property Name="PenoplexFilling" Type="Boolean" Nullable="false" />
+          <Property Name="Peephole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InteriorDecoration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Payment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="OnWorkingSide" Type="Boolean" />
-          <Property Name="OnSecondSide" Type="Boolean" />
-          <Property Name="MufflePart" Type="Boolean" />
-          <Property Name="Side" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SlopeCorner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Сomments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="OrderNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NumberDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OnWorkingSide" Type="Boolean" Nullable="false" />
+          <Property Name="OnSecondSide" Type="Boolean" Nullable="false" />
+          <Property Name="MufflePart" Type="Boolean" Nullable="false" />
+          <Property Name="Side" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SlopeCorner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Сomments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumberDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ordersDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Order" EntityType="Self.Order" />

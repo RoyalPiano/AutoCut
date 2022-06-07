@@ -22,7 +22,7 @@ namespace ProjectZavod.Views
         public CreationWindow()
         {
             InitializeComponent();
-            DataContext = new CreationVM(this.gridOrders);
+            DataContext = new CreationVM(this.gridOrders, this);
             Loaded += CreationWindow_Loaded;
         }
 

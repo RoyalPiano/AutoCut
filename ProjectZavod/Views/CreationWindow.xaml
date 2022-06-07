@@ -89,19 +89,13 @@
                     Orientation="Horizontal"
                     Height="27"
                     HorizontalAlignment="Center">
-
-                <TextBlock Background="#2e84e5" Width="150" Text="Номер Заказа" Foreground = "White" Margin="0,0,0,0"/>
-                <TextBlock Background="#2e84e5" Width="150" Text="Номер Д Д" Foreground = "White"/>
-                <TextBlock Background="#2e84e5" Width="150" Text="Заказчик" Foreground = "White"/>
-                <TextBlock Background="#2e84e5" Width="150" Text="Дата" Foreground = "White"/>
-
             </StackPanel>
 
             <ScrollViewer
                     Background="White"
                     Height="190">
 
-                <DataGrid x:Name="gridOrders" SelectedIndex="{Binding SelectedIndex}" SelectedItem="{Binding SelectedOrder}"/>
+                <DataGrid x:Name="gridOrders" SelectedItem="{Binding SelectedOrder}" CanUserAddRows="false"/>
             </ScrollViewer>
 
             <StackPanel
@@ -117,7 +111,7 @@
                         Content="Cмотреть/Изменить"/>
                 <Button
                         Width="120"
-                        Content="Открыть в Excel"/>
+                        Content="Открыть в Excel" Command="{Binding GetExcelOrder}"/>
                 <Button
                         Width="120"
                         Content="Бланк Proff"/>

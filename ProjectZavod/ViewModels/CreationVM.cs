@@ -1,4 +1,6 @@
-﻿using ProjectZavod.Data.orderDBModel;
+﻿using ProjectZavod.classes;
+using ProjectZavod.classes.DTOs;
+using ProjectZavod.Data.orderDBModel;
 using ProjectZavod.Views;
 using ProjectZavod.Views.doorTypesViews;
 using System;
@@ -18,23 +20,21 @@ namespace ProjectZavod.ViewModels
         public Action Close { get; set; }
         private ordersDBEntities db;
         private DataGrid dataGrid;
-        public CreationVM(DataGrid dataGrid)
+        private Window window { get; set; }
+        public CreationVM(DataGrid dataGrid, CreationWindow window)
         {
+            this.window = window;
             this.dataGrid = dataGrid;
             db = new ordersDBEntities();
-            var a = db.Order.Select(w => w.Customer).ToList();
-            var list = db.Order.Select(w => new
+            var date = DateTime.Now.Date.ToString().Split()[0];
+            var list = db.Order.Select(w => new OrderDTO
             {
                 Номер = w.OrderNumber,
                 ДД = w.NumberDD,
-                Заказчик = w.Customer
+                Заказчик = w.Customer,
+                Дата = date
             }).ToList();
-            dataGrid.ItemsSource = null;
-
-            dataGrid.ItemsSource = list.ToList();
-            dataGrid.UpdateLayout();
-            dataGrid.Items.Refresh();
-            dataGrid.UpdateLayout();
+            dataGrid.ItemsSource = list;
         }
 
         private ICommand _createDoorType1;
@@ -46,6 +46,22 @@ namespace ProjectZavod.ViewModels
                 OpenDoorType1Window(), () => true));
             }
         }
+        private ICommand getExcelOrder;
+        public ICommand GetExcelOrder
+        {
+            get
+            {
+                return getExcelOrder ?? (getExcelOrder = new CommandHandler(() =>
+                CreateExcelOrder(), () => true));
+            }
+        }
+
+        private void CreateExcelOrder()
+        {
+            var order = db.Order.First(w => w.OrderNumber == SelectedOrder.Номер);
+            var excelRedactor = new ExcelRedactor(order);
+            excelRedactor.Do();
+        }
 
         private ICommand deleteOrder;
         public ICommand DeleteOrder
@@ -53,17 +69,27 @@ namespace ProjectZavod.ViewModels
             get
             {
                 return deleteOrder ?? (deleteOrder = new CommandHandler(() =>
-                Delete(SelectedOrder), () => true));
+                Delete(), () => true));
             }
         }
 
-        private void Delete(object selectedIndex)
+        private void Delete()
         {
-            //var order = db.Order.First(w => w.OrderNumber == SelectedOrder.Номер);
+            var order = db.Order.First(w => w.OrderNumber == SelectedOrder.Номер);
             db.Order.Remove(order);
+            db.SaveChanges();
+            var date = DateTime.Now.Date.ToString().Split()[0];
+            var list = db.Order.Select(w => new OrderDTO
+            {
+                Номер = w.OrderNumber,
+                ДД = w.NumberDD,
+                Заказчик = w.Customer,
+                Дата = date
+            }).ToList();
+            dataGrid.ItemsSource = list;
         }
 
-        public object SelectedOrder { get; set; }
+        public OrderDTO SelectedOrder { get; set; }
 
         private void OpenDoorType1Window()
         {
