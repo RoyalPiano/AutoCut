@@ -10,6 +10,6 @@ namespace ProjectZavod.Interfaces
 {
     public interface IParamsReader
     {
-        OrderParams ReadParams(FileInfo file);
+        OrderParamsDTO ReadParams(FileInfo file);
     }
 }

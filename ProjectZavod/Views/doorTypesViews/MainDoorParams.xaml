@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod.Views.doorTypesViews" xmlns:local1="clr-namespace:ProjectZavod.ViewModels"
         mc:Ignorable="d"
-        Title="Подъездные" Height="500" Width="1200">
+        Title="Подъездные" Height="500" Width="950">
 
     <Window.DataContext>
         <local1:MainDoorParamsVM/>
@@ -26,6 +26,7 @@
                         Width="350">
 
                         <ComboBox
+                            ItemsSource="{Binding LeafList}"
                             Text="{Binding Leaf}"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -33,13 +34,20 @@
                             Height="20"
                             IsEditable="false"
                             StaysOpenOnEdit="True">
-                            <ComboBoxItem Content="Одностворчатая"></ComboBoxItem>
-                            <ComboBoxItem Content="Двустворчатая"></ComboBoxItem>
                         </ComboBox>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Толщина стали(мм):"/>
-                            <TextBox Text="{Binding SteelThickness}" Width="150"/>
+                            <ComboBox
+                                ItemsSource="{Binding SteelThicknessList}"
+                                Text="{Binding SteelThickness}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Width="150"
+                                Height="20"
+                                IsEditable="false"
+                                StaysOpenOnEdit="True">
+                            </ComboBox>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -51,15 +59,14 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Тип открывания двери:" Height="20"/>
                             <ComboBox
-                            Text="{Binding DoorOpeningType}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Width="150"
-                            Height="20"
-                            IsEditable="false"
-                            StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Левая (Петли слева)"></ComboBoxItem>
-                                <ComboBoxItem Content="Двустворчатая"></ComboBoxItem>
+                                ItemsSource="{Binding DoorOpeningTypeList}"
+                                Text="{Binding DoorOpeningType}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Width="150"
+                                Height="20"
+                                IsEditable="false"
+                                StaysOpenOnEdit="True">
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -83,14 +90,14 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Полимерно-порошковое покрытие:" Height="20"/>
                             <ComboBox
-                            Text="{Binding PolymerCoating}"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Width="150"
-                            Height="20"
-                            IsEditable="false"
-                            StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Медь"></ComboBoxItem>
+                                ItemsSource="{Binding PolymerCoatingList}"
+                                Text="{Binding PolymerCoating}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Width="150"
+                                Height="20"
+                                IsEditable="false"
+                                StaysOpenOnEdit="True">
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -99,16 +106,17 @@
                                 <TextBlock Text="Замок 1"/>
                                 <ComboBox
                                     Text="{Binding Lock1}"
+                                    ItemsSource="{Binding Lock1List}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                    <ComboBoxItem Content="Нет"></ComboBoxItem>
                                 </ComboBox>
                                 <TextBlock Text="Циллиндр"/>
                                 <ComboBox
+                                    ItemsSource="{Binding Сylinder1List}"
                                     Text="{Binding Сylinder1}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -116,21 +124,21 @@
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                    <ComboBoxItem Content="Нет"></ComboBoxItem>
                                 </ComboBox>
                                 <TextBlock Text="Замок 2"/>
                                 <ComboBox
                                     Text="{Binding Lock2}"
+                                    ItemsSource="{Binding Lock1List}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                    <ComboBoxItem Content="Нет"></ComboBoxItem>
                                 </ComboBox>
                                 <TextBlock Text="Циллиндр"/>
                                 <ComboBox
+                                    ItemsSource="{Binding Сylinder1List}"
                                     Text="{Binding Сylinder2}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -138,7 +146,6 @@
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                    <ComboBoxItem Content="Нет"></ComboBoxItem>
                                 </ComboBox>
                             </StackPanel>
                         </StackPanel>
@@ -147,18 +154,19 @@
                             <TextBlock Text="Ручка:"/>
                             <ComboBox
                                     Text="{Binding Handle}"
+                                ItemsSource="{Binding HandleList}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Скобка снаружи"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Цвет фурнитуры:"/>
                             <ComboBox
+                                ItemsSource="{Binding HardwareColorList}"
                                     Text="{Binding HardwareColor}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -166,7 +174,6 @@
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Золото"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -175,11 +182,13 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Шумоизоляция:"/>
-                            <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Проклеивание полотна 'Вибропласт'" IsChecked="{Binding VibroplastFilling}"/>
-                                <CheckBox Content="Заполнение коробки мин.ватой" IsChecked="{Binding CottonFilling}"/>
-                                <CheckBox Content="Заполнение полотна Пеноплекс" IsChecked="{Binding PenoplexFilling}"/>
-                            </StackPanel>
+                            <ListBox Name="listBoxZone" ItemsSource="{Binding SoundproofingList}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsChecked}" Content="{Binding Value}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </StackPanel>
 
 
@@ -191,19 +200,28 @@
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Глазок:"/>
-                            <TextBox Text="{Binding Peephole}" Width="150"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="Внутренняя отделка:"/>
                             <ComboBox
-                                    Text="{Binding InteriorDecoration}"
+                                ItemsSource="{Binding PeepholeList}"
+                                    Text="{Binding Peephole}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Нет"></ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Внутренняя отделка:"/>
+                            <ComboBox
+                                    Text="{Binding InteriorDecoration}"
+                                ItemsSource="{Binding InteriorDecorationList}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Width="150"
+                                    Height="20"
+                                    IsEditable="false"
+                                    StaysOpenOnEdit="True">
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -214,13 +232,13 @@
                             <TextBlock Text="Оплата:"/>
                             <ComboBox
                                     Text="{Binding Payment}"
+                                ItemsSource="{Binding PaymentList}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Нет"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -240,20 +258,19 @@
                             <TextBlock Text="Сбоку"/>
                             <ComboBox
                                     Text="{Binding Side}"
+                                ItemsSource="{Binding SideList}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Width="150"
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Нет"></ComboBoxItem>
-                                <ComboBoxItem Content="Слева"></ComboBoxItem>
-                                <ComboBoxItem Content="Справа"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Уголок для откосов:"/>
                             <ComboBox
+                                ItemsSource="{Binding SlopeCornerList}"
                                     Text="{Binding SlopeCorner}"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -261,7 +278,6 @@
                                     Height="20"
                                     IsEditable="false"
                                     StaysOpenOnEdit="True">
-                                <ComboBoxItem Content="Нет"></ComboBoxItem>
                             </ComboBox>
                         </StackPanel>
 
@@ -269,7 +285,7 @@
 
                     <StackPanel
                         Orientation="Vertical"
-                        Width="250">
+                        Width="270">
 
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Примечания:"/>
@@ -279,6 +295,14 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Заказчик:"/>
                             <TextBox Text="{Binding Customer}" Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Контакт заказчика:"/>
+                            <TextBox Text="{Binding CustomerContact}" Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Адрес заказчика:"/>
+                            <TextBox Text="{Binding CustomerAdress}" Width="150"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBlock Text="Номер заказа:"/>
@@ -292,6 +316,8 @@
                     </StackPanel>
 
                 </StackPanel>
+
+                <Button Content="Назад" Height="30" Width="70" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding BackBtn}"/>
 
                 <StackPanel
                     VerticalAlignment="Bottom"

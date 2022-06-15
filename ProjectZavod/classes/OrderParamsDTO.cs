@@ -11,9 +11,9 @@ using ProjectZavod.Services;
 
 namespace ProjectZavod.ViewModels
 {
-    public class OrderParams
+    public class OrderParamsDTO
     {
-        public OrderParams(double height, double width, KeyLock keyType1, KeyLock keyType2, string doorType, int latchSum)
+        public OrderParamsDTO(double height, double width, KeyLock keyType1, KeyLock keyType2, string doorType, int latchSum)
         {
             Height = height;
             Width = width;

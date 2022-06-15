@@ -13,7 +13,7 @@ namespace ProjectZavod.classes
 {
     public class OrderReader : IParamsReader
     {
-        public OrderParams ReadParams(FileInfo file)
+        public OrderParamsDTO ReadParams(FileInfo file)
         {
             if (file.Extension != ".xls" && file.Extension != ".xlsx")
                 return null;
@@ -34,7 +34,7 @@ namespace ProjectZavod.classes
             doorType = doorType.ToString().Replace("/", "");
             KeyLock keyLock1 = new KeyLock(keyType1);
             KeyLock keyLock2 = new KeyLock(keyType2);
-            var orderParams = new OrderParams(height.Value, width.Value, keyLock1, keyLock2, doorType, latchSum);
+            var orderParams = new OrderParamsDTO(height.Value, width.Value, keyLock1, keyLock2, doorType, latchSum);
             return orderParams;
         }
     }

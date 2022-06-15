@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectZavod.Views"
         mc:Ignorable="d"
-        Title="CreationWindow" Height="450" Width="800">
+        Title="Proff" Height="450" Width="800">
 
     <Grid Background="#e8e8e8">
 
@@ -20,9 +20,9 @@
                 Height="40"
                 Content="Заказчики"/>
 
-            <Button
+            <!--<Button
                 Height="40"
-                Content="Папка заказов"/>
+                Content="Папка заказов"/>-->
 
             <Button
                 Height="40"
@@ -70,11 +70,13 @@
 
                 <Button
                         Width="110"
-                        Content="Квартирные"/>
+                        Content="Квартирные"
+                    Command="{Binding CreateDoorType1}"/>
 
                 <Button
                         Width="110"
-                        Content="Противопожарные"/>
+                        Content="Противопожарные"
+                    Command="{Binding CreateDoorType1}"/>
 
             </StackPanel>
 
@@ -103,21 +105,19 @@
                     Height="25">
 
                 <Button
-                        Width="120"
+                        Width="150"
                         Content="Удалить"
                     Command="{Binding DeleteOrder}"/>
                 <Button
-                        Width="120"
+                        Width="150"
+                    Command="{Binding ChangeOrder}"
                         Content="Cмотреть/Изменить"/>
                 <Button
-                        Width="120"
+                        Width="150"
                         Content="Открыть в Excel" Command="{Binding GetExcelOrder}"/>
                 <Button
-                        Width="120"
+                        Width="150"
                         Content="Бланк Proff"/>
-                <Button
-                        Width="120"
-                        Content="Отправить"/>
 
             </StackPanel>
 

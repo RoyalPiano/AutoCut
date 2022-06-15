@@ -224,6 +224,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>orderModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\orderDBModel\OrderParams.cs">
+      <DependentUpon>orderModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBmodels\ComboBoxModel.cs" />
     <Compile Include="Interfaces\IParamsReader.cs" />
     <Compile Include="Services\IPathsService.cs" />
@@ -236,7 +239,7 @@
     <Compile Include="ViewModels\ICloseWindow.cs" />
     <Compile Include="ViewModels\MainDoorParamsVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
-    <Compile Include="classes\OrderParams.cs" />
+    <Compile Include="classes\OrderParamsDTO.cs" />
     <Compile Include="classes\DxfRedactor.cs" />
     <Compile Include="classes\RootPaths.cs" />
     <Compile Include="ViewModels\ViewRedactorVM.cs" />

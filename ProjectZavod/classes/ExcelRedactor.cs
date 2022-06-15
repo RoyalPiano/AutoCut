@@ -28,7 +28,7 @@ namespace ProjectZavod.classes
 
             excelSheet.Cells[x, "G"] = value;
             var strX2 = $"G{x}";
-            var strY2 = $"K{x}";
+            var strY2 = $"M{x}";
 
             excelSheet.get_Range(strX2, strY2).Cells.Merge();
             excelSheet.get_Range(strX2, strY2).Borders.LineStyle = XlLineStyle.xlContinuous;
@@ -41,11 +41,36 @@ namespace ProjectZavod.classes
             Application excel = new Application();
             var workbook = excel.Workbooks.Open(@"C:\Users\Oleg\source\repos\autocutNew\ProjectZavod\templates\invoice\Order.xls");
             workbook.Sheets["Заказ"].Delete();
-            //Worksheet excelSheet = workbook.ActiveSheet;
+            var a = workbook.Sheets.get_Item("Договор");
+            a.Cells[9, 1] = order.Customer;
+            a.Cells[5, "a"] = $"С УСЛОВИЕМ ПРЕДВАРИТЕЛЬНОЙ ОПЛАТЫ  №  {order.OrderNumber}";
+            a.Cells[6, "i"] = order.Date;
+            a.Cells[169, "f"] = order.Customer;
+            a.Cells[170, "f"] = $"Адрес: {order.CustomerAdress}";
+            a.Cells[171, "f"] = $"Контакты: {order.CustomerContact}";
+            a.Cells[16, "a"] = $"2.1. Общая сумма Договора составляет {order.Price} рублей, ";
+            a.Cells[18, "a"] = $"- стоимость товара {order.Price} рублей,";
+            var waybill = workbook.Sheets.get_Item("Накладная");
+            waybill.Cells[15, "g"] = order.OrderNumber;
+            waybill.Cells[15, "i"] = order.Date;
+            waybill.Cells[21, "c"] = order.OrderNumber;
+            waybill.Cells[21, "m"] = order.Price;
+            waybill.Cells[21, "n"] = order.Price;
+            waybill.Cells[21, "q"] = order.Price;
+            waybill.Cells[21, "r"] = order.Price;
+            waybill.Cells[22, "n"] = order.Price;
+            waybill.Cells[22, "r"] = order.Price;
+            waybill.Cells[23, "n"] = order.Price;
+            waybill.Cells[23, "r"] = order.Price;
+
+            var pasport = workbook.Sheets.get_Item("Паспорт");
+            pasport.Cells[1, "g"] = $"Приложение №2 к договору № {order.OrderNumber} от {order.Date}г.";
+
+            var mdf = workbook.Sheets.get_Item("Паспорт накладки МДФ");
+            mdf.Cells[1, "b"] = $"Приложение №3 к договору {order.OrderNumber} от {order.Date}г.";
+
             Worksheet excelSheet = workbook.Sheets.Add(Before: workbook.ActiveSheet);
-            //var newSheet = workbook.Sheets.Add(After: workbook.ActiveSheet);
             fillDefaultInfo(excelSheet);
-            //CreateInvoice(workbook);
 
             makeItem(19, "A", excelSheet, "Размер двери", $"{order.DoorWidth}x{order.DoorHeight}");
             makeItem(20, "A", excelSheet, "Тип двери \"ЩИТ\"", order.Leaf);
@@ -70,14 +95,7 @@ namespace ProjectZavod.classes
             makeItem(31, "A", excelSheet, "Ручка", order.Handle);
             makeItem(32, "A", excelSheet, "Цвет фурнитуры", order.HardwareColor);
             makeItem(33, "A", excelSheet, "Задвижки", $"{order.LatchesCount} шт.");
-            var filling = new StringBuilder();
-            if (order.VibroplastFilling)
-                filling.Append("Проклеивание \"Вибропласт\" ");
-            if (order.CottonFilling)
-                filling.Append("Заполнение коробки мин.ватой ");
-            if (order.PenoplexFilling)
-                filling.Append("Проклеивание \"Пеноплекс\"");
-            makeItem(34, "A", excelSheet, "Шумоизоляция", filling.ToString());
+            makeItem(34, "A", excelSheet, "Шумоизоляция", order.Soundproofing);
             makeItem(35, "A", excelSheet, "Глазок", order.Peephole);
             makeItem(36, "A", excelSheet, "Внутренняя отделка", order.InteriorDecoration);
             makeItem(37, "A", excelSheet, "Цвет внутренней отделки", order.Color);
@@ -99,9 +117,9 @@ namespace ProjectZavod.classes
             makeItem(43, "A", excelSheet, "Заказчик", order.Customer);
             makeItem(44, "A", excelSheet, "Номер заказа", order.OrderNumber);
             makeItem(45, "A", excelSheet, "Номер ДД", order.NumberDD);
-            makeItem(46, "A", excelSheet, "Стоимость", "Не указано");
+            makeItem(46, "A", excelSheet, "Стоимость", order.Price);
             makeItem(47, "A", excelSheet, "Скидка 0%", "Не указано");
-            makeItem(48, "A", excelSheet, "ИТОГО", "Не указано");
+            makeItem(48, "A", excelSheet, "ИТОГО", order.Price);
 
             excel.Visible = true;
 
@@ -116,6 +134,8 @@ namespace ProjectZavod.classes
             excelSheet.Cells[3, 7] = "8(343-9)39-97-97";
             excelSheet.Cells[4, 7] = "эл. адрес: opt89122100901@ya.ru";
             excelSheet.Cells[14, "F"] = $"БЛАНК ОФОРМЛЕНИЯ ЗАКАЗА:     {order.OrderNumber}";
+            excelSheet.Cells[16, "F"] = $"Дата:     {order.Date}";
+
             excelSheet.Cells[49, "A"] = "Размеры указываются по коробке";
             excelSheet.Cells[50, "A"] = "Со способом открывания двери согласен  _________________________";
             excelSheet.Cells[52, "A"] = "Исполнитель_______________________";
@@ -127,49 +147,40 @@ namespace ProjectZavod.classes
             excelSheet.get_Range("F8", "L8").Borders.LineStyle = XlLineStyle.xlContinuous;
             excelSheet.get_Range("F8", "L8").Font.Size = 13;
             excelSheet.get_Range("F8", "L8").Cells.RowHeight = 24;
-            excelSheet.get_Range("F8", "L8").Font.Size = 18;
+            excelSheet.get_Range("F8", "L8").Font.Size = 16;
             excelSheet.get_Range("F8", "L8").Font.Bold = 10;
 
-            excelSheet.get_Range("a1", "e1").Font.Size = 18;
+            excelSheet.get_Range("a1", "e1").Font.Size = 16;
             excelSheet.get_Range("a1", "e1").Font.Bold = 10;
 
-            excelSheet.get_Range("g2", "i2").Font.Size = 18;
+            excelSheet.get_Range("g2", "i2").Font.Size = 16;
             excelSheet.get_Range("g2", "i2").Font.Bold = 10;
 
-            excelSheet.get_Range("g3", "i3").Font.Size = 18;
+            excelSheet.get_Range("g3", "i3").Font.Size = 16;
             excelSheet.get_Range("g3", "i3").Font.Bold = 10;
 
-            excelSheet.get_Range("g4", "i4").Font.Size = 18;
+            excelSheet.get_Range("g4", "i4").Font.Size = 16;
 
-            excelSheet.get_Range("f14", "j14").Font.Size = 18;
+            excelSheet.get_Range("f14", "j14").Font.Size = 16;
             excelSheet.get_Range("f14", "j14").Font.Bold = 10;
 
-            excelSheet.get_Range("f49", "j49").Font.Size = 18;
+            excelSheet.get_Range("f16", "j16").Font.Size = 16;
+            excelSheet.get_Range("f16", "j16").Font.Bold = 10;
+
+            excelSheet.get_Range("f49", "j49").Font.Size = 16;
             excelSheet.get_Range("f49", "j49").Font.Bold = 10;
 
-            excelSheet.get_Range("a50", "g50").Font.Size = 18;
+            excelSheet.get_Range("a50", "g50").Font.Size = 16;
             excelSheet.get_Range("a50", "g50").Font.Bold = 10;
 
-            excelSheet.get_Range("a52", "g52").Font.Size = 18;
+            excelSheet.get_Range("a52", "g52").Font.Size = 16;
             excelSheet.get_Range("a52", "g52").Font.Bold = 10;
 
-            excelSheet.get_Range("h52", "g52").Font.Size = 18;
+            excelSheet.get_Range("h52", "g52").Font.Size = 16;
             excelSheet.get_Range("h52", "g52").Font.Bold = 10;
 
-            excelSheet.get_Range("h54", "k54").Font.Size = 18;
+            excelSheet.get_Range("h54", "k54").Font.Size = 16;
             excelSheet.get_Range("h54", "k54").Font.Bold = 10;
-        }
-
-        private void CreateInvoice(Workbook workbook)
-        {
-            Application excel = new Application();
-            var workbook2 = excel.Workbooks.Open(@"C:\Users\Oleg\source\repos\autocutNew\ProjectZavod\templates\invoice\invoice.xlsx");
-            //var workbook = excel.Workbooks.Add(Type.Missing);
-            //Worksheet excelSheet = workbook2.ActiveSheet;
-            Worksheet excelSheet = workbook2.Worksheets["Лист1"];
-            excelSheet.Copy(After: workbook.Worksheets["Заказ"]);
-            workbook2.Close();
-
         }
     }
 }

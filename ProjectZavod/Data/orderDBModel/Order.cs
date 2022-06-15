@@ -16,7 +16,7 @@ namespace ProjectZavod.Data.orderDBModel
     {
         public int Id { get; set; }
         public string Leaf { get; set; }
-        public Nullable<double> SteelThickness { get; set; }
+        public string SteelThickness { get; set; }
         public Nullable<double> DoorWidth { get; set; }
         public Nullable<double> DoorHeight { get; set; }
         public string DoorOpeningType { get; set; }
@@ -33,9 +33,7 @@ namespace ProjectZavod.Data.orderDBModel
         public string Handle { get; set; }
         public string HardwareColor { get; set; }
         public Nullable<int> LatchesCount { get; set; }
-        public bool VibroplastFilling { get; set; }
-        public bool CottonFilling { get; set; }
-        public bool PenoplexFilling { get; set; }
+        public string Soundproofing { get; set; }
         public string Peephole { get; set; }
         public string InteriorDecoration { get; set; }
         public string Color { get; set; }
@@ -49,5 +47,9 @@ namespace ProjectZavod.Data.orderDBModel
         public string Customer { get; set; }
         public string OrderNumber { get; set; }
         public string NumberDD { get; set; }
+        public string Date { get; set; }
+        public string Price { get; set; }
+        public string CustomerContact { get; set; }
+        public string CustomerAdress { get; set; }
     }
 }

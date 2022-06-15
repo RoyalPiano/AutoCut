@@ -58,7 +58,7 @@ namespace ProjectZavod.ViewModels
             }
         }
 
-        private DxfFileDTO HandlePresenceOfLatches(OrderParams orderParams, DxfFileDTO dxfFileDTO)
+        private DxfFileDTO HandlePresenceOfLatches(OrderParamsDTO orderParams, DxfFileDTO dxfFileDTO)
         {
             if (orderParams.LatchSum == 0)
             {
@@ -74,7 +74,7 @@ namespace ProjectZavod.ViewModels
             return dxfFileDTO;
         }
 
-        private DxfFileDTO HandlePresenceOfLocks(OrderParams orderParams, DxfFileDTO dxfFileDTO)
+        private DxfFileDTO HandlePresenceOfLocks(OrderParamsDTO orderParams, DxfFileDTO dxfFileDTO)
         {
             if (orderParams.KeyType1.IsRequested)
             {
@@ -100,7 +100,7 @@ namespace ProjectZavod.ViewModels
             return new FileInfo(fileInfo.FullName.Replace(".dxf", $" {typeOfKeyLock}.dxf"));
         }
 
-        private FileInfo SetNewMeasurementsInFileName(FileInfo fileInfo, OrderParams orderParams)
+        private FileInfo SetNewMeasurementsInFileName(FileInfo fileInfo, OrderParamsDTO orderParams)
         {
             var tempMeasure = fileInfo.Name;
             if (tempMeasure.Contains(heightTemplate))
